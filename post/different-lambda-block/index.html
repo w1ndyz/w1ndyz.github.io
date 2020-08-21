@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noodp"/>
+    <meta name="author" content="w1ndy">
+    <meta name="description" content="w1ndy的个人博客">
+    
+    
+    
+    <link rel="next" href="http://waterdoge.com/post/rails-delegate/" />
+    <link rel="canonical" href="http://waterdoge.com/post/different-lambda-block/" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>
+        
+        
+            Ruby中Proc, lambda, block的不同之处 | W1ndy&#39;s Blog
+        
+    </title>
+    <meta name="title" content="Ruby中Proc, lambda, block的不同之处 | W1ndy&#39;s Blog">
+    
+<link rel="stylesheet" href="/css/main.min.css">
+
+
+    
+    
+ 
+
+<script type="application/ld+json">
+{
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/waterdoge.com\/"
+    },
+    "articleSection" : "post",
+    "name" : "Ruby中Proc, lambda, block的不同之处",
+    "headline" : "Ruby中Proc, lambda, block的不同之处",
+    "description" : "ruby lambda proc block",
+    "inLanguage" : "zh-cn",
+    "author" : "W1ndy",
+    "creator" : "W1ndy",
+    "publisher": "W1ndy",
+    "accountablePerson" : "W1ndy",
+    "copyrightHolder" : "W1ndy",
+    "copyrightYear" : "2016",
+    "datePublished": "2016-12-24 00:00:00 \u002b0000 UTC",
+    "dateModified" : "2016-12-24 00:00:00 \u002b0000 UTC",
+    "url" : "http:\/\/waterdoge.com\/post\/different-lambda-block\/",
+    "wordCount" : "651",
+    "keywords" : [ "rails", "W1ndy\u0027s Blog"]
+}
+</script>
+
+  </head>
+    <body class="">
+        <div class="wrapper">
+            <nav class="navbar">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+    <div class="container">
+        
+            <div class="navbar-header header-back2home-logo">
+                <span class="logo_mark" >>$</span>
+                <a href="http://waterdoge.com/">
+                    <span class="logo_text" >cd /home/</span>
+                    <span class="logo_cursor" ></span>
+                </a>
+            </div>
+        
+        <div class="navbar-right">
+                
+                <span class="menu">
+                
+                <a class="menu-item" href="/post/" title="">Posts</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+                <a class="menu-item" href="/about/" title="W1ndy">W1ndy</a>
+                
+                <span class="divide"></span>
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a>
+                </span>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+     <div class="container">
+        <div class="navbar">
+            <div class="navbar-header header-logo">
+                    <a href="http://waterdoge.com/">W1ndy&#39;s Blog</a>
+            </div>
+            <div class="navbar-right">
+                <div><a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a></div>
+                <div class="menu-toggle">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                <nav class="mb-md">
+                    
+                    
+                        <a class="menu-item" href="/post/" title="">
+                            <h3>Posts</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/categories/" title="">
+                            <h3>Categories</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/tags/" title="">
+                            <h3>Tags</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/about/" title="">
+                            <h3>About</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/about/" title="W1ndy">
+                            <h3>W1ndy</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                </nav>
+        </div>
+    </div>
+</nav>
+            <main class="main">
+                <div class="container">
+                    
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Ruby中Proc, lambda, block的不同之处</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://waterdoge.com/" rel="author">W1ndy</a> with ♥
+                <span class="post-time">
+                on <time datetime=2016-12-24 itemprop="datePublished">December 24, 2016</time>
+                </span>
+                in
+                
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        
+                        
+                        
+                          <a href="http://waterdoge.com/categories/%E5%85%B3%E4%BA%8Erails/"> 关于Rails, </a>
+                        
+                        
+                </span>
+                <span class="post-word-count">651 words</span>
+        </div>
+    </header>
+
+    <div class="post-content">
+        
+
+        
+        
+
+        
+        
+        
+        
+        
+
+        
+        
+        
+
+        <h2 id="简介">简介</h2>
+<p>Proc, Lambda, block一直是Ruby元编程当中绕不过去的问题，它们经常出现，用法也是多种多样，今天就来了解一些它们之间的不同。</p>
+<p>我们用代码示例:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># Block Examples</span>
+
+<span style="color:#f92672">[</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span><span style="color:#f92672">].</span>each { <span style="color:#f92672">|</span>x<span style="color:#f92672">|</span> puts x<span style="color:#f92672">*</span><span style="color:#ae81ff">2</span> }   <span style="color:#75715e"># block is in between the curly braces</span>
+
+<span style="color:#f92672">[</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span><span style="color:#f92672">].</span>each <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>x<span style="color:#f92672">|</span>
+  puts x<span style="color:#f92672">*</span><span style="color:#ae81ff">2</span>                    <span style="color:#75715e"># block is everything between the do and end</span>
+<span style="color:#66d9ef">end</span>
+
+<span style="color:#75715e"># Proc Examples             </span>
+p <span style="color:#f92672">=</span> <span style="color:#66d9ef">Proc</span><span style="color:#f92672">.</span>new { <span style="color:#f92672">|</span>x<span style="color:#f92672">|</span> puts x<span style="color:#f92672">*</span><span style="color:#ae81ff">2</span> }
+<span style="color:#f92672">[</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span><span style="color:#f92672">].</span>each(<span style="color:#f92672">&amp;</span>p)              <span style="color:#75715e"># The &#39;&amp;&#39; tells ruby to turn the proc into a block</span>
+
+proc <span style="color:#f92672">=</span> <span style="color:#66d9ef">Proc</span><span style="color:#f92672">.</span>new { puts <span style="color:#e6db74">&#34;Hello World&#34;</span> }
+proc<span style="color:#f92672">.</span>call                     <span style="color:#75715e"># The body of the Proc object gets executed when called</span>
+
+<span style="color:#75715e"># Lambda Examples            </span>
+lam <span style="color:#f92672">=</span> lambda { <span style="color:#f92672">|</span>x<span style="color:#f92672">|</span> puts x<span style="color:#f92672">*</span><span style="color:#ae81ff">2</span> }
+<span style="color:#f92672">[</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span><span style="color:#f92672">].</span>each(<span style="color:#f92672">&amp;</span>lam)
+
+lam <span style="color:#f92672">=</span> lambda { puts <span style="color:#e6db74">&#34;Hello World&#34;</span> }
+lam<span style="color:#f92672">.</span>call
+</code></pre></div><p>虽然看起来都是差不多的，但是还是有细微的区别。</p>
+<p>首先我们来看一下<code>Proc</code>和<code>Block</code>的区别：</p>
+<ol>
+<li><code>Proc</code>是对象, 但是<code>Block</code>不是</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">p <span style="color:#f92672">=</span> <span style="color:#66d9ef">Proc</span><span style="color:#f92672">.</span>new { puts <span style="color:#e6db74">&#34;Hello World&#34;</span> }
+
+p<span style="color:#f92672">.</span>call  <span style="color:#75715e"># prints &#39;Hello World&#39;</span>
+p<span style="color:#f92672">.</span>class <span style="color:#75715e"># returns &#39;Proc&#39;</span>
+a <span style="color:#f92672">=</span> p   <span style="color:#75715e"># a now equals p, a Proc instance</span>
+p       <span style="color:#75715e"># returns a proc object &#39;#&lt;Proc:0x007f96b1a60eb0@(irb):46&gt;&#39;</span>
+
+{ puts <span style="color:#e6db74">&#34;Hello World&#34;</span>}       <span style="color:#75715e"># syntax error  </span>
+a <span style="color:#f92672">=</span> { puts <span style="color:#e6db74">&#34;Hello World&#34;</span>}   <span style="color:#75715e"># syntax error</span>
+<span style="color:#f92672">[</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span><span style="color:#f92672">].</span>each {<span style="color:#f92672">|</span>x<span style="color:#f92672">|</span> puts x<span style="color:#f92672">*</span><span style="color:#ae81ff">2</span>} <span style="color:#75715e"># only works as part of the syntax of a method call</span>
+</code></pre></div><ol start="2">
+<li>参数列表中最多只能有一个<code>Block</code>, 但是<code>Proc</code>可以有多个</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">multiple_procs</span>(proc1, proc2)
+  proc1<span style="color:#f92672">.</span>call
+  proc2<span style="color:#f92672">.</span>call
+<span style="color:#66d9ef">end</span>
+
+a <span style="color:#f92672">=</span> <span style="color:#66d9ef">Proc</span><span style="color:#f92672">.</span>new { puts <span style="color:#e6db74">&#34;First proc&#34;</span> }
+b <span style="color:#f92672">=</span> <span style="color:#66d9ef">Proc</span><span style="color:#f92672">.</span>new { puts <span style="color:#e6db74">&#34;Second proc&#34;</span> }
+
+multiple_procs(a,b)
+</code></pre></div><p>我们再来看一下<code>Proc</code>和<code>Lambda</code>的区别:</p>
+<p>在我们讨论这两个的区别之前，我们要知道一点，那就是它们都是<code>Proc</code>对象。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">proc <span style="color:#f92672">=</span> <span style="color:#66d9ef">Proc</span><span style="color:#f92672">.</span>new { puts <span style="color:#e6db74">&#34;Hello world&#34;</span> }
+lam <span style="color:#f92672">=</span> lambda { puts <span style="color:#e6db74">&#34;Hello World&#34;</span> }
+
+proc<span style="color:#f92672">.</span>class <span style="color:#75715e"># returns &#39;Proc&#39;</span>
+lam<span style="color:#f92672">.</span>class  <span style="color:#75715e"># returns &#39;Proc&#39;</span>
+</code></pre></div><p>它们的不同之处在于返回(<code>return</code>)的地方不同，且<code>lambda</code>会严格检查传入的参数。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">lam <span style="color:#f92672">=</span> lambda { <span style="color:#f92672">|</span>x<span style="color:#f92672">|</span> puts x }    <span style="color:#75715e"># creates a lambda that takes 1 argument</span>
+lam<span style="color:#f92672">.</span>call(<span style="color:#ae81ff">2</span>)                    <span style="color:#75715e"># prints out 2</span>
+lam<span style="color:#f92672">.</span>call                       <span style="color:#75715e"># ArgumentError: wrong number of arguments (0 for 1)</span>
+lam<span style="color:#f92672">.</span>call(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>)                <span style="color:#75715e"># ArgumentError: wrong number of arguments (3 for 1)</span>
+
+lam <span style="color:#f92672">=</span> lambda{ <span style="color:#f92672">|</span>x,y,z<span style="color:#f92672">|</span> puts x,y,z }
+lam<span style="color:#f92672">.</span>call(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>)                <span style="color:#75715e"># returns nil</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">proc <span style="color:#f92672">=</span> <span style="color:#66d9ef">Proc</span><span style="color:#f92672">.</span>new { <span style="color:#f92672">|</span>x<span style="color:#f92672">|</span> puts x } <span style="color:#75715e"># creates a proc that takes 1 argument</span>
+proc<span style="color:#f92672">.</span>call(<span style="color:#ae81ff">2</span>)                   <span style="color:#75715e"># prints out 2</span>
+proc<span style="color:#f92672">.</span>call                      <span style="color:#75715e"># returns nil</span>
+proc<span style="color:#f92672">.</span>call(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>)               <span style="color:#75715e"># prints out 1 and forgets about the extra arguments</span>
+
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">lambda_test</span>
+  lam <span style="color:#f92672">=</span> lambda { <span style="color:#66d9ef">return</span> }
+  lam<span style="color:#f92672">.</span>call
+  puts <span style="color:#e6db74">&#34;Hello world&#34;</span>
+<span style="color:#66d9ef">end</span>
+
+lambda_test                 <span style="color:#75715e"># calling lambda_test prints &#39;Hello World&#39;</span>
+
+<span style="color:#75715e">#我们可以看见在lam.call之后，仍然运行了puts操作</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">proc_test</span>
+  proc <span style="color:#f92672">=</span> <span style="color:#66d9ef">Proc</span><span style="color:#f92672">.</span>new { <span style="color:#66d9ef">return</span> }
+  proc<span style="color:#f92672">.</span>call
+  puts <span style="color:#e6db74">&#34;Hello world&#34;</span>
+<span style="color:#66d9ef">end</span>
+
+proc_test                 <span style="color:#75715e"># calling proc_test prints nothing</span>
+<span style="color:#75715e">#而proc则在proc.call时就返回了</span>
+</code></pre></div>
+    </div>
+
+    <div class="post-copyright">
+            
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>w1ndy </span>
+                </p>
+            
+
+            
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://waterdoge.com/post/different-lambda-block/>http://waterdoge.com/post/different-lambda-block/</span>
+            </p>
+            
+            
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s):
+            
+            <span class="tag"><a href="http://waterdoge.com/tags/rails/">
+                    #rails</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> ·
+                <span><a href="http://waterdoge.com/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        
+        <a href="http://waterdoge.com/post/rails-delegate/" class="next" rel="next" title="Rails delegate的理解和用法">Rails delegate的理解和用法&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+        
+            
+                <div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://cdn.bootcss.com/gitalk/1.5.2/gitalk.css">
+<script src="https://cdn.bootcss.com/gitalk/1.5.2/gitalk.min.js"></script>
+<script>
+    const gitalk = new Gitalk({
+
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: location.pathname, 
+        distractionFreeMode: false 
+    });
+    (function () {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('gitalk-container').innerHTML = 'Gitalk comments not available by default when the website is previewed locally.';
+            return;
+        }
+        gitalk.render('gitalk-container');
+    })();
+</script>
+
+            
+        
+    </div>
+</article>
+                </div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i>
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://waterdoge.com/">w1ndy</a> | </span>
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/Mogeko/Mogege" target="_blank" rel="external nofollow">Mogege</a></span>
+    </div>
+</footer>
+
+
+
+
+
+>
+<script defer src="/js/vendor_main.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script> pangu.spacingPage();</script>
+
+
+
+
+
+        </div>
+    </body>
+</html>

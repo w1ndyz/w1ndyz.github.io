@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on W1ndy&#39;s Blog</title>
+    <link>http://waterdoge.com/post/</link>
+    <description>Recent content in Posts on W1ndy&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 15 Aug 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://waterdoge.com/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>《增长黑客:如何低成本实现爆发式增长(二)》</title>
+      <link>http://waterdoge.com/post/growing-hack2/</link>
+      <pubDate>Sat, 15 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://waterdoge.com/post/growing-hack2/</guid>
+      <description>第二部分 变现 几个增长的主要杠杆 分别是用户获取、激活、留存和变现。 在确定你不仅拥有好产品，而且这个产品对目标市场有很大的吸引力之前，不要贸然行</description>
+    </item>
+    
+    <item>
+      <title>《增长黑客:如何低成本实现爆发式增长(一)》</title>
+      <link>http://waterdoge.com/post/growing-hack1/</link>
+      <pubDate>Fri, 07 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://waterdoge.com/post/growing-hack1/</guid>
+      <description>if you are not growing, then you are dying 如果企业不再增长，那么就是在衰亡！ 随着中国人口红利的衰减、互联网流量红利的马太效应显现、用户的时间越来越碎片化、资本投资变</description>
+    </item>
+    
+    <item>
+      <title>HTTP的演变及各版本区别</title>
+      <link>http://waterdoge.com/post/http-version/</link>
+      <pubDate>Tue, 04 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://waterdoge.com/post/http-version/</guid>
+      <description>HTTP的演变 HTTP(Hypertext transfer protocol)，即超文本传输协议，是由欧洲核子研究委员会CERN的英国工程师Tim Berners Lee发明的。最开始主要用于传递h</description>
+    </item>
+    
+    <item>
+      <title>一个HTTP请求的整个流程</title>
+      <link>http://waterdoge.com/post/http-request/</link>
+      <pubDate>Fri, 31 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://waterdoge.com/post/http-request/</guid>
+      <description>问题 当发出一个HTTP请求时，具体的请求过程是怎么样的呢？ 假如我们访问了https://www.google.com,它会经历什么样的历程呢</description>
+    </item>
+    
+    <item>
+      <title>为什么UDP头有8个字节?</title>
+      <link>http://waterdoge.com/post/udp-header/</link>
+      <pubDate>Fri, 24 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://waterdoge.com/post/udp-header/</guid>
+      <description>为什么UDP头只有八个字节？ 在弄清楚为什么是8个字节之前，先弄清楚UDP是什么？ UDP(User Datagram Protocol), 中文翻译过来是用户数据包协议。它是一种无连接的传输层协</description>
+    </item>
+    
+    <item>
+      <title>《创业维艰:如何完成比难更难的事 (二)》</title>
+      <link>http://waterdoge.com/post/hard-thing-about-business-part2/</link>
+      <pubDate>Thu, 16 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://waterdoge.com/post/hard-thing-about-business-part2/</guid>
+      <description>第六章 关注眼前的麻烦 如何最大限度减少办公室政治？ 选拔员工时要衡量对方的野心有多大。只关注个人成功而将公司利益置之不顾的人拥有的只是不当的野心</description>
+    </item>
+    
+    <item>
+      <title>《创业维艰:如何完成比难更难的事 (一)》</title>
+      <link>http://waterdoge.com/post/hard-thing-about-business-part1/</link>
+      <pubDate>Sat, 11 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://waterdoge.com/post/hard-thing-about-business-part1/</guid>
+      <description>如何完成比难更难的事 第一章 从革命者到风险资本家 害怕并不代表没有勇气，真正的行动才是最重要的。 第二章 Loudcloud浮沉录:我会活下去 在此期</description>
+    </item>
+    
+    <item>
+      <title>《从0到1: 开启商业与未来的秘密》</title>
+      <link>http://waterdoge.com/post/from0-1/</link>
+      <pubDate>Fri, 10 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://waterdoge.com/post/from0-1/</guid>
+      <description>第三章 所有成功的企业都是不同的 垄断者的谎言：为了继续不受干扰地获得垄断利润，他们会想法设法来隐瞒垄断这个事实，通常方法是夸大(并不存在的)竞</description>
+    </item>
+    
+    <item>
+      <title>如何处理秒杀</title>
+      <link>http://waterdoge.com/post/miaosha/</link>
+      <pubDate>Wed, 01 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://waterdoge.com/post/miaosha/</guid>
+      <description>一般说起秒杀，都会觉得是个比较麻烦，比较有技术含量。我们可以看看如何去处理好秒杀带来的问题。 秒杀会带来什么问题 假如像双十一那样，每个商品在某</description>
+    </item>
+    
+    <item>
+      <title>软件设计原则</title>
+      <link>http://waterdoge.com/post/software-design/</link>
+      <pubDate>Thu, 25 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://waterdoge.com/post/software-design/</guid>
+      <description>今天看golang-developer-road-map，发现上面有涉及到软件的设计原则，于是就在网上搜索了一番，在这里整理一下。 目录 SOL</description>
+    </item>
+    
+    <item>
+      <title>为什么TCP3次握手4次挥手?</title>
+      <link>http://waterdoge.com/post/tcp-why/</link>
+      <pubDate>Thu, 18 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://waterdoge.com/post/tcp-why/</guid>
+      <description>TCP的11个状态机 三次握手 LISTEN: 等待从对端TCP节点发送来的请求 SYN_SENT:表示TCP已经发送了一个SYN报文，代表应用程序执行了一个主</description>
+    </item>
+    
+    <item>
+      <title>排序算法(二)</title>
+      <link>http://waterdoge.com/post/sort2/</link>
+      <pubDate>Wed, 29 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://waterdoge.com/post/sort2/</guid>
+      <description>时间复杂度为O(nlogn)的排序 排序(一)中讲了冒泡排序，插入排序，选择排序。其中插入排序比冒泡排序更常使用的原因是，插入排序只有1次赋值</description>
+    </item>
+    
+    <item>
+      <title>排序算法(一)</title>
+      <link>http://waterdoge.com/post/sort1/</link>
+      <pubDate>Sun, 29 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://waterdoge.com/post/sort1/</guid>
+      <description>排序算法的执行效率 对于排序算法执行效率的分析，我们一般会从这个几个方面衡量： 最好情况、最坏情况、平均情况时间复杂度 时间复杂度的系数、常数、低</description>
+    </item>
+    
+    <item>
+      <title>使用DockerSwarm部署Rails(三)</title>
+      <link>http://waterdoge.com/post/rails-swarm-deploy3/</link>
+      <pubDate>Tue, 24 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://waterdoge.com/post/rails-swarm-deploy3/</guid>
+      <description>Portainer 在使用Docker swarm部署项目时，我们先要了解一个工具&amp;ndash;Portainer。 Portainer是一个轻量级的管理Dock</description>
+    </item>
+    
+    <item>
+      <title>使用DockerSwarm部署Rails(二)</title>
+      <link>http://waterdoge.com/post/rails-swarm-deploy2/</link>
+      <pubDate>Mon, 11 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://waterdoge.com/post/rails-swarm-deploy2/</guid>
+      <description>多阶段构建 在构建镜像的时候，我们会发现: rails的应用体积很大 构建时间过长 于是多阶段构建出现了，它将一个镜像的构建分为多个阶段。比如rai</description>
+    </item>
+    
+    <item>
+      <title>使用DockerSwarm部署Rails(一)</title>
+      <link>http://waterdoge.com/post/rails-swarm-deploy1/</link>
+      <pubDate>Thu, 24 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://waterdoge.com/post/rails-swarm-deploy1/</guid>
+      <description>在使用docker部署rails项目之前，我们先来介绍gitlab的ci/cd。 Gitlab提供了持续集成(CI Continuous Integration )的服务。在项目中添加.</description>
+    </item>
+    
+    <item>
+      <title>Rails delegate的理解和用法</title>
+      <link>http://waterdoge.com/post/rails-delegate/</link>
+      <pubDate>Sun, 15 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://waterdoge.com/post/rails-delegate/</guid>
+      <description>简介 delegate方法提供了一个delegate类方法，去将自己包含的对象轻易的暴露出来。 提供的Options :to =&amp;gt; 指定一个对象 :prefix =&amp;gt; 在对象方</description>
+    </item>
+    
+    <item>
+      <title>Ruby中Proc, lambda, block的不同之处</title>
+      <link>http://waterdoge.com/post/different-lambda-block/</link>
+      <pubDate>Sat, 24 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://waterdoge.com/post/different-lambda-block/</guid>
+      <description>简介 Proc, Lambda, block一直是Ruby元编程当中绕不过去的问题，它们经常出现，用法也是多种多样，今天就来了解一些它们之间的不同。 我们用代码示例: #</description>
+    </item>
+    
+  </channel>
+</rss>
