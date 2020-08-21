@@ -2,57 +2,57 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>rails on W1ndy&#39;s Blog</title>
-    <link>http://waterdoge.com/tags/rails/</link>
+    <link>https://w1ndyz.github.io/tags/rails/</link>
     <description>Recent content in rails on W1ndy&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Tue, 24 Dec 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://waterdoge.com/tags/rails/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://w1ndyz.github.io/tags/rails/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>使用DockerSwarm部署Rails(三)</title>
-      <link>http://waterdoge.com/post/rails-swarm-deploy3/</link>
+      <link>https://w1ndyz.github.io/post/rails-swarm-deploy3/</link>
       <pubDate>Tue, 24 Dec 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://waterdoge.com/post/rails-swarm-deploy3/</guid>
+      <guid>https://w1ndyz.github.io/post/rails-swarm-deploy3/</guid>
       <description>Portainer 在使用Docker swarm部署项目时，我们先要了解一个工具&amp;ndash;Portainer。 Portainer是一个轻量级的管理Dock</description>
     </item>
     
     <item>
       <title>使用DockerSwarm部署Rails(二)</title>
-      <link>http://waterdoge.com/post/rails-swarm-deploy2/</link>
+      <link>https://w1ndyz.github.io/post/rails-swarm-deploy2/</link>
       <pubDate>Mon, 11 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://waterdoge.com/post/rails-swarm-deploy2/</guid>
+      <guid>https://w1ndyz.github.io/post/rails-swarm-deploy2/</guid>
       <description>多阶段构建 在构建镜像的时候，我们会发现: rails的应用体积很大 构建时间过长 于是多阶段构建出现了，它将一个镜像的构建分为多个阶段。比如rai</description>
     </item>
     
     <item>
       <title>使用DockerSwarm部署Rails(一)</title>
-      <link>http://waterdoge.com/post/rails-swarm-deploy1/</link>
+      <link>https://w1ndyz.github.io/post/rails-swarm-deploy1/</link>
       <pubDate>Thu, 24 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://waterdoge.com/post/rails-swarm-deploy1/</guid>
+      <guid>https://w1ndyz.github.io/post/rails-swarm-deploy1/</guid>
       <description>在使用docker部署rails项目之前，我们先来介绍gitlab的ci/cd。 Gitlab提供了持续集成(CI Continuous Integration )的服务。在项目中添加.</description>
     </item>
     
     <item>
       <title>Rails delegate的理解和用法</title>
-      <link>http://waterdoge.com/post/rails-delegate/</link>
+      <link>https://w1ndyz.github.io/post/rails-delegate/</link>
       <pubDate>Sun, 15 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://waterdoge.com/post/rails-delegate/</guid>
+      <guid>https://w1ndyz.github.io/post/rails-delegate/</guid>
       <description>简介 delegate方法提供了一个delegate类方法，去将自己包含的对象轻易的暴露出来。 提供的Options :to =&amp;gt; 指定一个对象 :prefix =&amp;gt; 在对象方</description>
     </item>
     
     <item>
       <title>Ruby中Proc, lambda, block的不同之处</title>
-      <link>http://waterdoge.com/post/different-lambda-block/</link>
+      <link>https://w1ndyz.github.io/post/different-lambda-block/</link>
       <pubDate>Sat, 24 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://waterdoge.com/post/different-lambda-block/</guid>
+      <guid>https://w1ndyz.github.io/post/different-lambda-block/</guid>
       <description>简介 Proc, Lambda, block一直是Ruby元编程当中绕不过去的问题，它们经常出现，用法也是多种多样，今天就来了解一些它们之间的不同。 我们用代码示例: #</description>
     </item>
     

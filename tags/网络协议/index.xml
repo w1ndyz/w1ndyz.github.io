@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>网络协议 on W1ndy&#39;s Blog</title>
-    <link>http://waterdoge.com/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/</link>
+    <link>https://w1ndyz.github.io/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/</link>
     <description>Recent content in 网络协议 on W1ndy&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Thu, 18 Jun 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://waterdoge.com/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://w1ndyz.github.io/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>为什么TCP3次握手4次挥手?</title>
-      <link>http://waterdoge.com/post/tcp-why/</link>
+      <link>https://w1ndyz.github.io/post/tcp-why/</link>
       <pubDate>Thu, 18 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>http://waterdoge.com/post/tcp-why/</guid>
+      <guid>https://w1ndyz.github.io/post/tcp-why/</guid>
       <description>TCP的11个状态机 三次握手 LISTEN: 等待从对端TCP节点发送来的请求 SYN_SENT:表示TCP已经发送了一个SYN报文，代表应用程序执行了一个主</description>
     </item>
     

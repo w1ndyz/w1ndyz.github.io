@@ -1,28 +1,28 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>W1ndy&#39;s Blog</title>
-    <link>http://waterdoge.com/</link>
+    <link>https://w1ndyz.github.io/</link>
     <description>Recent content on W1ndy&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Sat, 15 Aug 2020 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://waterdoge.com/" rel="self" type="application/rss+xml" />
+    <atom:link href="https://w1ndyz.github.io/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Posts</title>
-      <link>http://waterdoge.com/post/</link>
+      <link>https://w1ndyz.github.io/post/</link>
       <pubDate>Sat, 15 Aug 2020 00:00:00 +0000</pubDate>
       
-      <guid>http://waterdoge.com/post/</guid>
+      <guid>https://w1ndyz.github.io/post/</guid>
       <description></description>
     </item>
     
     <item>
       <title>W1ndy</title>
-      <link>http://waterdoge.com/about/</link>
+      <link>https://w1ndyz.github.io/about/</link>
       <pubDate>Thu, 18 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>http://waterdoge.com/about/</guid>
+      <guid>https://w1ndyz.github.io/about/</guid>
       <description>&lt;style&gt;
 
     @import url(&#39;https://fonts.googleapis.com/css?family=Katibeh&amp;display=swap&#39;);
@@ -141,10 +141,10 @@
     
     <item>
       <title></title>
-      <link>http://waterdoge.com/archives/</link>
+      <link>https://w1ndyz.github.io/archives/</link>
       <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://waterdoge.com/archives/</guid>
+      <guid>https://w1ndyz.github.io/archives/</guid>
       <description></description>
     </item>
     
