@@ -56,7 +56,7 @@
     "datePublished": "2020-06-18 00:00:00 \u002b0000 UTC",
     "dateModified" : "2020-06-18 00:00:00 \u002b0000 UTC",
     "url" : "https:\/\/w1ndyz.github.io\/post\/tcp-why\/",
-    "wordCount" : "1308",
+    "wordCount" : "1623",
     "keywords" : [ "网络协议", "W1ndy\u0027s Blog"]
 }
 </script>
@@ -168,7 +168,7 @@
                         
                         
                 </span>
-                <span class="post-word-count">1308 words</span>
+                <span class="post-word-count">1623 words</span>
         </div>
     </header>
 
@@ -190,7 +190,7 @@
         
         
 
-        <h6 id="tcp的11个状态机">TCP的11个状态机</h6>
+        <h3 id="tcp的11个状态机">TCP的11个状态机</h3>
 <ul>
 <li>三次握手</li>
 </ul>
@@ -200,6 +200,7 @@
 <li><code>SYN_RECV</code>:表示在<code>LISTEN</code>状态的TCP节点收到的对端的<code>SYN</code>报文，并已经通过发送<code>SYN/ACK</code>报文做出了响应。并等待对端TCP节点发送一个<code>ACK</code>，以此完成连接的建立，进入<code>ESTABLISHED</code></li>
 <li><code>ESTABLISHED</code>:与对端TCP节点的连接建立完成。数据和报文可以在两个TCP节点之间双向交换</li>
 </ol>
+<p><img src="https://raw.githubusercontent.com/w1ndyz/windy-img/master/img/9Xdhqju57aOVic6.png" alt=""></p>
 <ul>
 <li>四次挥手</li>
 </ul>
@@ -212,15 +213,24 @@
 <li><code>LAST_ACK</code>:表示接收方等待发起方发送最后的<code>ACK</code>报文，当接收到<code>ACK</code>报文时，即进入<code>CLOSED</code>状态</li>
 <li><code>CLOSED</code>:表示连接中断</li>
 </ol>
-<h6 id="为何需要三次握手">为何需要三次握手?</h6>
-<p>ans: 防止过期或失效连接又传给了服务端，因而产生错误。如果不使用三次握手，那么只要接收方发出了<code>SYN/ACK</code>，新的连接就建立了，由于过期或失效的连接没有发出建立连接的请求，于是不会响应接收方，不会发出<code>ACK</code>，但是接收方会认为新的连接已经建立，并一直等待发起方传输数据，这样接收方的很多资源就拜拜浪费掉了。主要是防止接收方一直等待，浪费资源</p>
-<h6 id="为何需要四次挥手">为何需要四次挥手?</h6>
+<h3 id="为何需要三次握手">为何需要三次握手?</h3>
+<p>回答: 防止过期或失效连接又传给了服务端，因而产生错误。如果不使用三次握手，那么只要接收方发出了<code>SYN/ACK</code>，新的连接就建立了，由于过期或失效的连接没有发出建立连接的请求，于是不会响应接收方，不会发出<code>ACK</code>，但是接收方会认为新的连接已经建立，并一直等待发起方传输数据，这样接收方的很多资源就拜拜浪费掉了。主要是防止接收方一直等待，浪费资源</p>
+<h3 id="为何需要四次挥手">为何需要四次挥手?</h3>
 <p>首先TCP是全双工的协议，那什么是全双工呢？下面是维基百科的解释:</p>
 <blockquote>
 <p>全双工（<strong>full-duplex</strong>）的系统允许二台设备间同时进行双向数据传输。一般的电话、手机就是全双工的系统，因为在讲话时同时也可以听到对方的声音。全双工的系统可以用一般的双向车道形容。两个方向的车辆因使用不同的车道，因此不会互相影响。</p>
 </blockquote>
 <p>接收到FIN时意味将没有数据再发来，但是还是可以继续发送数据</p>
-<p><img src="https://raw.githubusercontent.com/w1ndyz/windy-img/master/img/9Xdhqju57aOVic6.png" alt=""></p>
+<p>第一次挥手</p>
+<p>主动发起断开的请求FIN，仅仅代表主动方不再发送数据报文，但是还是能接收数据报文</p>
+<p>第二次挥手</p>
+<p>被动方响应FIN，发送ACK，告知主动方知道你想断开了，这样主动方就不会一直发送断开的请求。</p>
+<p>第三次挥手</p>
+<p>被动方在处理完数据报文后，发送FIN给主动方，保证数据通信正常可靠。接着进入LAST_ACK（超时等待）阶段。</p>
+<p>第四次挥手</p>
+<p>主动方发送ACK响应报文，被动方释放链接。</p>
+<h3 id="为什么握手是3次而挥手是4次">为什么握手是3次，而挥手是4次？</h3>
+<p>当我们建立连接的时候，SYN和ACK是可以同事发送的。而关闭连接的时候FIN报文只能单独发送，因为客户端发送FIN报文时，服务端可能还在发送数据(全双工协议)，所以没办法确定双方的数据传输完毕。只有当数据全部传输完毕了，才能关闭。</p>
 
     </div>
 
