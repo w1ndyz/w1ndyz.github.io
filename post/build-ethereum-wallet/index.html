@@ -9,9 +9,9 @@
     <meta name="description" content="w1ndy的个人博客">
     
     
-    <link rel="prev" href="https://w1ndyz.github.io/post/software-design/" />
-    <link rel="next" href="https://w1ndyz.github.io/post/from0-1/" />
-    <link rel="canonical" href="https://w1ndyz.github.io/post/miaosha/" />
+    <link rel="prev" href="https://w1ndyz.github.io/post/growing-hack2/" />
+    
+    <link rel="canonical" href="https://w1ndyz.github.io/post/build-ethereum-wallet/" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -22,10 +22,10 @@
     <title>
         
         
-            如何处理秒杀 | W1ndy&#39;s Blog
+            以太坊H2钱包的实现 | W1ndy&#39;s Blog
         
     </title>
-    <meta name="title" content="如何处理秒杀 | W1ndy&#39;s Blog">
+    <meta name="title" content="以太坊H2钱包的实现 | W1ndy&#39;s Blog">
     
 <link rel="stylesheet" href="/css/main.min.css">
 
@@ -43,9 +43,9 @@
          "@id": "https:\/\/w1ndyz.github.io\/"
     },
     "articleSection" : "post",
-    "name" : "如何处理秒杀",
-    "headline" : "如何处理秒杀",
-    "description" : "秒杀",
+    "name" : "以太坊H2钱包的实现",
+    "headline" : "以太坊H2钱包的实现",
+    "description" : "区块链 以太坊 ethereum wallet h2",
     "inLanguage" : "zh-cn",
     "author" : "W1ndy",
     "creator" : "W1ndy",
@@ -53,11 +53,11 @@
     "accountablePerson" : "W1ndy",
     "copyrightHolder" : "W1ndy",
     "copyrightYear" : "2020",
-    "datePublished": "2020-07-01 00:00:00 \u002b0000 UTC",
-    "dateModified" : "2020-07-01 00:00:00 \u002b0000 UTC",
-    "url" : "https:\/\/w1ndyz.github.io\/post\/miaosha\/",
-    "wordCount" : "1405",
-    "keywords" : [ "秒杀", "W1ndy\u0027s Blog"]
+    "datePublished": "2020-12-25 00:00:00 \u002b0000 UTC",
+    "dateModified" : "2020-12-25 00:00:00 \u002b0000 UTC",
+    "url" : "https:\/\/w1ndyz.github.io\/post\/build-ethereum-wallet\/",
+    "wordCount" : "1701",
+    "keywords" : [ "blockchain", "W1ndy\u0027s Blog"]
 }
 </script>
 
@@ -153,11 +153,11 @@
                     
 <article class="post-warp" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">如何处理秒杀</h1>
+        <h1 class="post-title" itemprop="name headline">以太坊H2钱包的实现</h1>
         <div class="post-meta">
                 Written by <a itemprop="name" href="https://w1ndyz.github.io/" rel="author">W1ndy</a> with ♥
                 <span class="post-time">
-                on <time datetime=2020-07-01 itemprop="datePublished">July 1, 2020</time>
+                on <time datetime=2020-12-25 itemprop="datePublished">December 25, 2020</time>
                 </span>
                 in
                 
@@ -166,9 +166,11 @@
                         
                         
                         
+                          <a href="https://w1ndyz.github.io/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/"> 区块链, </a>
+                        
                         
                 </span>
-                <span class="post-word-count">1405 words</span>
+                <span class="post-word-count">1701 words</span>
         </div>
     </header>
 
@@ -188,44 +190,90 @@
         
         
 
-        <p>一般说起秒杀，都会觉得是个比较麻烦，比较有技术含量。我们可以看看如何去处理好秒杀带来的问题。</p>
-<h2 id="秒杀会带来什么问题">秒杀会带来什么问题</h2>
-<p>假如像双十一那样，每个商品在某个时刻，同时面对几百万用户的请求，同时下单去抢某一件商品。几百万的请求同时并发会导致网站瞬间就崩溃了。</p>
+        <h4 id="原理">原理</h4>
+<ol>
+<li>
+<p>私钥、公钥和地址的产生方法，这是区块链的相关知识</p>
+</li>
+<li>
+<p>如何使用API进行远程调用等基础概念，这是传统IT行业相关知识</p>
+</li>
+<li>
+<p>钱包设计相关的助记词(mnemonic)，keystore和密码的相关概念，它和区块链公钥、私钥和地址产生的方式思路一样，但是整个过程属于区块链钱包设计过程，不能与区块链的相关知识混淆</p>
+</li>
+</ol>
+<h4 id="解答">解答</h4>
+<h5 id="一-私钥公钥和地址产生的方式以-btc-为例">一、 私钥、公钥和地址产生的方式（以 BTC 为例）：</h5>
+<ol>
+<li>比特币私钥其实是使用 SHA-256 生成的 32 字节（256 位）的随机数，有效私钥的范围则取决于比特币使用的 secp256k1 椭圆曲线数字签名标准。</li>
+<li>在私钥的前面加上版本号，后面添加压缩标志和附加校验码，（所谓附加校验码，就是对私钥经过 2 次 SHA-256 运算，取两次哈希结果的前四字节），然后再对其进行 Base58 编码，就可以得到我们常见的 WIF （Wallet import Format) 格式的私钥。</li>
+<li>私钥经过椭圆曲线乘法运算，可以得到公钥。公钥是椭圆曲线上的点，并具有 x 和 y 坐标。公钥有两种形式：压缩的与非压缩的。早期比特币均使用非压缩公钥，现在大部分客户端默认使用压缩公钥。</li>
+</ol>
+<p>从私钥推导出公钥、再从公钥推导出公钥哈希都是单向的，也就是采用不可逆算法。</p>
+<p>椭圆曲线算法</p>
+<ol>
+<li>值通过 RIPEMD-160 算法来得到 20 字节的哈希值
+——Hash160</li>
+<li>把版本号 [2]+Hash160 组成的 21 字节数组进行双次 SHA256 哈希运算，得到的哈希值的头 4 个字节作为校验和，放置 21 字节数组的末尾。</li>
+<li>对组成 25 位数组进行 Base58 编码，最后得到地址。</li>
+</ol>
+<h5 id="二远程过程调用-remoteprocedure-call-rpc">二、远程过程调用 (RemoteProcedure Call, RPC)</h5>
+<p>它是一个计算机通信协议。该协议允许运行于一台计算机的程序调用另一台计算机的子程序，而程序员无需额外地为这个交互作用编程。RPC
+的主要功能目标是让构建分布式计算（应用）更容易，在提供强大的远程调用能力时不损失本地调用的语义简洁性。广为使用的是一个叫做 JSON （JavaScript
+Object Notation）- RPC 的协议。所以钱包都是通过某个区块链 RPC 接口调用来和区块链网络进行交互。</p>
+<h5 id="三助记词相关">三、助记词相关</h5>
+<p>助记词规则</p>
+<ol>
+<li>生成一个长度为 128~256 位 (bits) 的随机序列 (熵)；</li>
+<li>取熵哈希后的前 n 位作为校验和 (n= 熵长度 /32)；</li>
+<li>随机序列+校验和；</li>
+<li>把步骤 3 得到的结果每 11 位切割；</li>
+<li>步骤 4 得到的每 11 位字节匹配词库的一个词；</li>
+<li>步骤 5 得到的结果就是助记词串；</li>
+</ol>
+<p>根据密钥之间是否有关联可把钱包分为两类：nondeterministic wallet 和 deterministic wallet。</p>
+<blockquote>
+<p>nondeterministic wallet：密钥对之间没有关联；</p>
+<p>deterministic wallet: 密钥对由一个原始的种子主密钥推导而来。最常见的推导方式是树状层级推导</p>
+<p>(hierarchical deterministic) 简称 HD。</p>
+</blockquote>
+<p>通过助记词生成种子</p>
+<p>助记词由长度为 128 到 256 位的随机序列 (熵) 匹配词库而来，随后采用 PBKDF2 function
+推导出更长的种子 (seed)。生成的种子被用来生成构建 deterministic Wallet 和推导钱包密钥。</p>
+<p>在密码学中，Key stretching 技术被用来增强弱密钥的安全性，增加了暴力破解 (Brute-force attack)
+对每个可能密钥尝试攻破的时间，增强了攻击难度。各种编程语言原生库都提供了 key stretching 的实现。PBKDF2(Password-Based
+Key Derivation Function 2) 是常用的 key stretching 算法中的一种。基本原理是通过一个为随机函数 (例如 HMAC
+函数)，把明文和盐值作为输入参数，然后重复进行运算最终产生密钥。</p>
+<ol start="7">
+<li>
+<p>助记词句子作为密码；</p>
+</li>
+<li>
+<p>&ldquo;mnemonic&rdquo; + passphrase 作为盐；</p>
+</li>
+<li>
+<p>2048 作为重复计算的次数+HMAC-SHA512 作为随机算法 , 最终得到 BIP32 种子，512 位 (64 字节) 是期望得到的密钥长度；</p>
+</li>
+</ol>
+<p>同时钱包还提供了 keystore 和密码基本功能</p>
+<p>用户最好的体验仍然会是密码方式，所以钱包还提供了 keystore 让用户导出保存，这个 Keystore 也是私钥经过加密过后的一个文件，需要你自己设置的密码才能打开文件。这样的好处是就算 keystore 文件被盗，只要你额外设置的密码够长够随机，那么短时间内私钥也不会泄露，有充足的时间转移地址里面的加密货币到其他地址。Keystore 会存储在使用的设备里，这样每次登陆只用输入相应密码即可。</p>
+<h3 id="助记词相关">助记词相关：</h3>
+<p>私钥 = 算法1(助记词)</p>
+<p>公钥 = 算法2(私钥)</p>
+<p>公钥hash = 算法3(公钥)</p>
+<p>地址 = 算法4(公钥hash)</p>
+<p>所以</p>
+<p>地址 = 算法4(算法3(算法2(算法1(助记词))))</p>
+<p>其中算法1、2、3、4都是公开的</p>
+<h3 id="钱包的核心">钱包的核心</h3>
+<p>打开钱包主要有一下几种方式:</p>
 <ul>
-<li>一方面是用户的请求导致我们的网络带宽不够</li>
-<li>另一方面是如果要扛住这几百万请求，我们需要非常多的机器</li>
+<li>私钥(privatekey)</li>
+<li>keystore+密码(keystore+password)</li>
+<li>助记词(mnemonic code)</li>
 </ul>
-<p>不仅如此，当所有请求集中在数据库的同一条数据上时，无论如何分库分表，或者采用分布式数据库都没有用，因为面对的是单条的热点数据。</p>
-<h2 id="一般的秒杀流程">一般的秒杀流程</h2>
-<p>&ldquo;秒杀&quot;事实上是商家的一种促销策略，以非常低的价格销售某个商品。如：1元卖iphone，仅100台，先到先得，于是来了100万人抢购。</p>
-<p>一般秒杀的页面是这样的：</p>
-<ol>
-<li>秒杀的前端页面，在还没有开始的时候，有一个置灰的倒计时按钮。</li>
-<li>倒计时时间到了后，按钮会激活点亮，用户可以点击按钮下单抢购。</li>
-<li>一般来说需要填写一个验证码，防止是机器人。</li>
-</ol>
-<p>后台需要面对的情况：</p>
-<ol>
-<li>面对前端请求，先要判断抢购时间是否到了。</li>
-<li>每次询问时，后端会返回一个校准时间，用来对前端时间的校准。</li>
-<li>时间到了后，会返回前端一个可以供来抢购的URL。</li>
-<li>前端将URL至于按钮上，以供跳转。</li>
-<li>抢到了，就进入支付流程。</li>
-<li>如果没货了，则返回秒杀活动结束。</li>
-</ol>
-<h2 id="秒杀的解决方案">秒杀的解决方案</h2>
-<p>很明显，要让 100 万用户能够在同一时间打开一个页面，这个时候，我们就需要用到 CDN 了。数据中心肯定是扛不住的，所以，我们要引入 CDN。</p>
-<p>在 CDN 上，这 100 万个用户就会被几十个甚至上百个 CDN 的边缘结点给分担了，于是就能够扛得住。然后，我们还需要在这些 CDN 结点上做点小文章。</p>
-<p>一方面，我们需要把小服务部署到 CDN 结点上去，这样，当前端页面来问开没开始时，这个小服务除了告诉前端开没开始外，它还可以统计下有多少人在线。每个小服务会把当前在线等待秒杀的人数每隔一段时间就回传给我们的数据中心，于是我们就知道全网总共在线的人数有多少。</p>
-<p>假设，我们知道有大约 100 万的人在线等着抢，那么，在我们快要开始的时候，由数据中心向各个部署在 CDN 结点上的小服务上传递一个概率值，比如说是 0.02%。</p>
-<p>于是，当秒杀开始的时候，这 100 万用户都在点下单按钮，首先他们请求到的是 CDN 上的这些服务，这些小服务按照 0.02% 的量把用户放到后面的数据中心，也就是 1 万个人放过去两个，剩下的 9998 个都直接返回秒杀已结束。</p>
-<p>于是，100 万用户被放过了 0.02% 的用户，也就是 200 个左右，而这 200 个人在数据中心抢那 100 个 iPhone，也就是 200 TPS，这个并发量怎么都应该能扛住了。</p>
-<p><span style="color:green">Tips</span>: <a href="https://en.wikipedia.org/wiki/Content_delivery_network">什么是CDN?</a></p>
-<p>这就是整个“秒杀”的技术细节，是不是有点不敢相信？</p>
-<h2 id="更多思考">更多思考</h2>
-<p>我们可以看到，解决秒杀这种特定业务场景，可以使用 CDN 的边缘结点来扛流量，然后过滤用户请求（限流用户请求），来保护数据中心的系统，这样才让整个秒杀得以顺利进行。</p>
-<p>那么，如果我们像双 11 那样，想尽可能多地卖出商品，那么就不像秒杀了。这是要尽可能多地收订单，但又不能超过库存，其中还有大量的银行支付，各大仓库的库存查询和分配，这些都是非常慢的操作。为了保证一致性，还要能够扛得住像双 11 这样的大规模并发访问，那么，应该怎么做呢？</p>
-<p>使用秒杀这样的解决方案基本上不太科学了。这个时候就需要认认真真地做高并发的架构和测试了，需要各个系统把自己的性能调整上去，还要小心地做性能规划，更要把分布式的弹力设计做好，最后是要不停地做性能测试，找到整个架构的系统瓶颈，然后不断地做水平扩展，以解决大规模的并发。</p>
+<h3 id="tips">Tips</h3>
+<p>一个简单的H2以太坊钱包的实现。<a href="https://github.com/w1ndyz/h2-wallet">https://github.com/w1ndyz/h2-wallet</a></p>
 
     </div>
 
@@ -240,7 +288,7 @@
             
             <p class="copyright-item">
                     <span>Link:</span>
-                    <a href=https://w1ndyz.github.io/post/miaosha/>https://w1ndyz.github.io/post/miaosha/</span>
+                    <a href=https://w1ndyz.github.io/post/build-ethereum-wallet/>https://w1ndyz.github.io/post/build-ethereum-wallet/</span>
             </p>
             
             
@@ -256,8 +304,8 @@
             <section>
             <i class="iconfont icon-tag"></i>Tag(s):
             
-            <span class="tag"><a href="https://w1ndyz.github.io/tags/%E7%A7%92%E6%9D%80/">
-                    #秒杀</a></span>
+            <span class="tag"><a href="https://w1ndyz.github.io/tags/blockchain/">
+                    #blockchain</a></span>
             
             </section>
         
@@ -269,10 +317,8 @@
 
     <div class="post-nav">
         
-        <a href="https://w1ndyz.github.io/post/software-design/" class="prev" rel="prev" title="软件设计原则"><i class="iconfont icon-left"></i>&nbsp;软件设计原则</a>
+        <a href="https://w1ndyz.github.io/post/growing-hack2/" class="prev" rel="prev" title="《增长黑客:如何低成本实现爆发式增长(二)》"><i class="iconfont icon-left"></i>&nbsp;《增长黑客:如何低成本实现爆发式增长(二)》</a>
         
-        
-        <a href="https://w1ndyz.github.io/post/from0-1/" class="next" rel="next" title="《从0到1: 开启商业与未来的秘密》">《从0到1: 开启商业与未来的秘密》&nbsp;<i class="iconfont icon-right"></i></a>
         
     </div>
 

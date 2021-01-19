@@ -198,60 +198,60 @@
 <p>一般情况下，运行一个pipline会经过三个阶段: <code>build</code>, <code>test</code>, <code>deploy</code>。这里我们介绍<code>prebuild</code>,<code>build</code>。这是基于rails的多阶段部署，详情可以查看<a href="https://ruby-china.org/topics/38766">Ruby China</a>的这一篇帖子。</p>
 <p>我们需要先熟悉gitlab-ci的语法，下面是一个示例:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#75715e"># runner的几个阶段</span>
-<span style="color:#66d9ef">stages</span>: 
-  - prebuild
-  - build
+<span style="color:#f92672">stages</span>: 
+  - <span style="color:#ae81ff">prebuild</span>
+  - <span style="color:#ae81ff">build</span>
 
-<span style="color:#66d9ef">before_script</span>:
-  - export MY_DOCKER_IMAGE_TAG=$(cat $CI_PROJECT_DIR/.current-version)
-  - export MY_DOCKER_REGISTRY=your_registry_url
-  - export MY_REGISTRY_USER=your_user
-  - export MY_REGISTRY_PWD=your_password
-  - echo $CI_PROJECT_DIR
-  - echo $PROJECT_IMAGE_NAME
-  - echo $MY_DOCKER_IMAGE_TAG
-  - echo $MY_DOCKER_REGISTRY
-  - echo $MY_REGISTRY_USER
-  - echo $MY_REGISTRY_PWD
+<span style="color:#f92672">before_script</span>:
+  - <span style="color:#ae81ff">export MY_DOCKER_IMAGE_TAG=$(cat $CI_PROJECT_DIR/.current-version)</span>
+  - <span style="color:#ae81ff">export MY_DOCKER_REGISTRY=your_registry_url</span>
+  - <span style="color:#ae81ff">export MY_REGISTRY_USER=your_user</span>
+  - <span style="color:#ae81ff">export MY_REGISTRY_PWD=your_password</span>
+  - <span style="color:#ae81ff">echo $CI_PROJECT_DIR</span>
+  - <span style="color:#ae81ff">echo $PROJECT_IMAGE_NAME</span>
+  - <span style="color:#ae81ff">echo $MY_DOCKER_IMAGE_TAG</span>
+  - <span style="color:#ae81ff">echo $MY_DOCKER_REGISTRY</span>
+  - <span style="color:#ae81ff">echo $MY_REGISTRY_USER</span>
+  - <span style="color:#ae81ff">echo $MY_REGISTRY_PWD</span>
 
-<span style="color:#66d9ef">variables</span>:
-  <span style="color:#66d9ef">LC_ALL</span>: C.UTF<span style="color:#ae81ff">-8</span>
-  <span style="color:#66d9ef">LANG</span>: en_US.UTF<span style="color:#ae81ff">-8</span>
-  <span style="color:#66d9ef">LANGUAGE</span>: en_US.UTF<span style="color:#ae81ff">-8</span>
-  <span style="color:#66d9ef">DOCKER_DRIVER</span>: overlay
-  <span style="color:#66d9ef">PROJECT_IMAGE_NAME</span>: your_image_name
+<span style="color:#f92672">variables</span>:
+  <span style="color:#f92672">LC_ALL</span>: <span style="color:#ae81ff">C.UTF-8</span>
+  <span style="color:#f92672">LANG</span>: <span style="color:#ae81ff">en_US.UTF-8</span>
+  <span style="color:#f92672">LANGUAGE</span>: <span style="color:#ae81ff">en_US.UTF-8</span>
+  <span style="color:#f92672">DOCKER_DRIVER</span>: <span style="color:#ae81ff">overlay</span>
+  <span style="color:#f92672">PROJECT_IMAGE_NAME</span>: <span style="color:#ae81ff">your_image_name</span>
 
-<span style="color:#66d9ef">construct_builder</span>:
-  <span style="color:#66d9ef">stage</span>: prebuild
-  <span style="color:#66d9ef">image</span>: docker:stable
-  <span style="color:#66d9ef">services</span>: 
-    - docker:dind
-  <span style="color:#66d9ef">tags</span>:
-    - dev
-  <span style="color:#66d9ef">variables</span>:
-    <span style="color:#66d9ef">BUILDER_IMAGE_TAG</span>: $PROJECT_IMAGE_NAME/builder:latest
-  <span style="color:#66d9ef">script</span>:
-    - docker login -u <span style="color:#e6db74">&#34;$MY_REGISTRY_USER&#34;</span> -p <span style="color:#e6db74">&#34;$MY_REGISTRY_PWD&#34;</span> $MY_DOCKER_REGISTRY
-    - docker pull $MY_DOCKER_REGISTRY/$BUILDER_IMAGE_TAG || echo <span style="color:#e6db74">&#34;No pre-built image found.&#34;</span>
-    - docker build --cache-from $MY_DOCKER_REGISTRY/$BUILDER_IMAGE_TAG -t $MY_DOCKER_REGISTRY/$BUILDER_IMAGE_TAG -f Dockerfile.builder . || docker build -t $MY_DOCKER_REGISTRY/$BUILDER_IMAGE_TAG -f Dockerfile.builder . 
-    - docker push <span style="color:#e6db74">&#34;$MY_DOCKER_REGISTRY/$BUILDER_IMAGE_TAG&#34;</span>
+<span style="color:#f92672">construct_builder</span>:
+  <span style="color:#f92672">stage</span>: <span style="color:#ae81ff">prebuild</span>
+  <span style="color:#f92672">image</span>: <span style="color:#ae81ff">docker:stable</span>
+  <span style="color:#f92672">services</span>: 
+    - <span style="color:#ae81ff">docker:dind</span>
+  <span style="color:#f92672">tags</span>:
+    - <span style="color:#ae81ff">dev</span>
+  <span style="color:#f92672">variables</span>:
+    <span style="color:#f92672">BUILDER_IMAGE_TAG</span>: <span style="color:#ae81ff">$PROJECT_IMAGE_NAME/builder:latest</span>
+  <span style="color:#f92672">script</span>:
+    - <span style="color:#ae81ff">docker login -u &#34;$MY_REGISTRY_USER&#34; -p &#34;$MY_REGISTRY_PWD&#34; $MY_DOCKER_REGISTRY</span>
+    - <span style="color:#ae81ff">docker pull $MY_DOCKER_REGISTRY/$BUILDER_IMAGE_TAG || echo &#34;No pre-built image found.&#34;</span>
+    - <span style="color:#ae81ff">docker build --cache-from $MY_DOCKER_REGISTRY/$BUILDER_IMAGE_TAG -t $MY_DOCKER_REGISTRY/$BUILDER_IMAGE_TAG -f Dockerfile.builder . || docker build -t $MY_DOCKER_REGISTRY/$BUILDER_IMAGE_TAG -f Dockerfile.builder . </span>
+    - <span style="color:#ae81ff">docker push &#34;$MY_DOCKER_REGISTRY/$BUILDER_IMAGE_TAG&#34;</span>
 
-<span style="color:#66d9ef">build_image</span>:
-  <span style="color:#66d9ef">stage</span>: build
-  <span style="color:#66d9ef">image</span>: docker:stable
-  <span style="color:#66d9ef">services</span>:
-    - docker:dind
-  <span style="color:#66d9ef">tags</span>:
-    - dev
-  <span style="color:#66d9ef">variables</span>:
-    <span style="color:#66d9ef">BUILDER_IMAGE_TAG</span>: $PROJECT_IMAGE_NAME/builder:latest    
-  <span style="color:#66d9ef">script</span>:
-    - docker login -u <span style="color:#e6db74">&#34;$MY_REGISTRY_USER&#34;</span> -p <span style="color:#e6db74">&#34;$MY_REGISTRY_PWD&#34;</span> $MY_DOCKER_REGISTRY
-    - docker pull $MY_DOCKER_REGISTRY/$BUILDER_IMAGE_TAG
-    - docker build --build-arg BUILDER_IMAGE_TAG=$MY_DOCKER_REGISTRY/${BUILDER_IMAGE_TAG} -t <span style="color:#e6db74">&#34;$MY_DOCKER_REGISTRY/$PROJECT_IMAGE_NAME:$MY_DOCKER_IMAGE_TAG.$CI_BUILD_REF_NAME&#34;</span> .
-    - docker push <span style="color:#e6db74">&#34;$MY_DOCKER_REGISTRY/$PROJECT_IMAGE_NAME:$MY_DOCKER_IMAGE_TAG.$CI_BUILD_REF_NAME&#34;</span>
-  <span style="color:#66d9ef">only</span>:
-    - dev  <span style="color:#75715e">#不同的分支，跑的ci不同</span>
+<span style="color:#f92672">build_image</span>:
+  <span style="color:#f92672">stage</span>: <span style="color:#ae81ff">build</span>
+  <span style="color:#f92672">image</span>: <span style="color:#ae81ff">docker:stable</span>
+  <span style="color:#f92672">services</span>:
+    - <span style="color:#ae81ff">docker:dind</span>
+  <span style="color:#f92672">tags</span>:
+    - <span style="color:#ae81ff">dev</span>
+  <span style="color:#f92672">variables</span>:
+    <span style="color:#f92672">BUILDER_IMAGE_TAG</span>: <span style="color:#ae81ff">$PROJECT_IMAGE_NAME/builder:latest    </span>
+  <span style="color:#f92672">script</span>:
+    - <span style="color:#ae81ff">docker login -u &#34;$MY_REGISTRY_USER&#34; -p &#34;$MY_REGISTRY_PWD&#34; $MY_DOCKER_REGISTRY</span>
+    - <span style="color:#ae81ff">docker pull $MY_DOCKER_REGISTRY/$BUILDER_IMAGE_TAG</span>
+    - <span style="color:#ae81ff">docker build --build-arg BUILDER_IMAGE_TAG=$MY_DOCKER_REGISTRY/${BUILDER_IMAGE_TAG} -t &#34;$MY_DOCKER_REGISTRY/$PROJECT_IMAGE_NAME:$MY_DOCKER_IMAGE_TAG.$CI_BUILD_REF_NAME&#34; .</span>
+    - <span style="color:#ae81ff">docker push &#34;$MY_DOCKER_REGISTRY/$PROJECT_IMAGE_NAME:$MY_DOCKER_IMAGE_TAG.$CI_BUILD_REF_NAME&#34;</span>
+  <span style="color:#f92672">only</span>:
+    - <span style="color:#ae81ff">dev </span> <span style="color:#75715e">#不同的分支，跑的ci不同</span>
     
 </code></pre></div><h4 id="配置runner">配置Runner</h4>
 <p>Runner可以是虚拟机，VPS，裸机，docker容器，甚至一堆容器。GitLab和Runners通过API通信，所以唯一的要求就是运行Runners的机器可以联网。Runner可以对应一个项目，也可以共享给多个项目。</p>
@@ -366,7 +366,7 @@
 
 
 
->
+
 <script defer src="/js/vendor_main.min.js"></script>
 
 

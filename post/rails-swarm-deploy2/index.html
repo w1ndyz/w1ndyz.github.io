@@ -209,83 +209,83 @@
 <p>下面将会举一个例子来看看，具体的compose文件如何配置:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---
 <span style="color:#75715e">#声明docker-compose的版本</span>
-<span style="color:#66d9ef">version</span>: <span style="color:#e6db74">&#34;3.6&#34;</span>
+<span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3.6&#34;</span>
 
-<span style="color:#66d9ef">services</span>:
-  <span style="color:#66d9ef">app</span>: <span style="color:#75715e">&amp;app_base</span>
-    <span style="color:#66d9ef">container_name</span>: <span style="color:#e6db74">&#39;app
-</span><span style="color:#e6db74">    env_file:
-</span><span style="color:#e6db74">      - docker.env
-</span><span style="color:#e6db74">    #镜像地址
-</span><span style="color:#e6db74">    image: app.1.0.master
-</span><span style="color:#e6db74">    volumes:
-</span><span style="color:#e6db74">      - assets:/home/app/app/public
-</span><span style="color:#e6db74">      - /etc/localtime:/etc/localtime:ro
-</span><span style="color:#e6db74">    configs:
-</span><span style="color:#e6db74">      - source: database_conf
-</span><span style="color:#e6db74">        target: /home/app/app_name/config/database.yml
-</span><span style="color:#e6db74">      - source: mongoid_conf
-</span><span style="color:#e6db74">        target: /home/app/app_name/config/mongoid.yml
-</span><span style="color:#e6db74">      - source: puma_conf
-</span><span style="color:#e6db74">        target: /home/app/app_name/config/puma.rb
-</span><span style="color:#e6db74">      - source: secrets_conf
-</span><span style="color:#e6db74">        target: /home/app/app_name/config/secrets.yml
-</span><span style="color:#e6db74">      - source: sidekiq_conf
-</span><span style="color:#e6db74">        target: /home/app/app_name/config/sidekiq.yml
-</span><span style="color:#e6db74">    logging:
-</span><span style="color:#e6db74">      options:
-</span><span style="color:#e6db74">        max-size: &#34;1g&#34;
-</span><span style="color:#e6db74">        max-file: &#34;10&#34;
-</span><span style="color:#e6db74">    command: /home/app/app_name/bin/docker-start
-</span><span style="color:#e6db74">    #docker-swarm设置worker角色
-</span><span style="color:#e6db74">    deploy:
-</span><span style="color:#e6db74">      replicas: 2
-</span><span style="color:#e6db74">      placement:
-</span><span style="color:#e6db74">        constraints: [node.role == worker]
-</span><span style="color:#e6db74">    ports:
-</span><span style="color:#e6db74">      - &#34;7000:7000&#34;
-</span><span style="color:#e6db74">    #健康检查，用于服务器挂了之后自动重启
-</span><span style="color:#e6db74">    healthcheck:
-</span><span style="color:#e6db74">      test: &#34;curl -fs localhost:7000 || exit 1&#34;
-</span><span style="color:#e6db74">      interval: 30s
-</span><span style="color:#e6db74">      timeout: 40s
-</span><span style="color:#e6db74">      retries: 60
-</span><span style="color:#e6db74">    networks:
-</span><span style="color:#e6db74">      - overlay
-</span><span style="color:#e6db74">      
-</span><span style="color:#e6db74"> #sidekiq
-</span><span style="color:#e6db74">  worker:
-</span><span style="color:#e6db74">    &lt;&lt;: *app_base
-</span><span style="color:#e6db74">    container_name: &#39;</span>app_name_worker&#39;
-    <span style="color:#66d9ef">deploy</span>:
-      <span style="color:#66d9ef">replicas</span>: <span style="color:#ae81ff">1</span>
-      <span style="color:#66d9ef">placement</span>:
-        <span style="color:#66d9ef">constraints</span>: [node.role == manager]
-    <span style="color:#66d9ef">ports</span>: []
-    <span style="color:#66d9ef">command</span>: bundle exec sidekiq -C config/sidekiq.yml -L /home/app/app_name/log/sidekiq.log
-    <span style="color:#66d9ef">healthcheck</span>:
-      <span style="color:#66d9ef">test</span>: <span style="color:#e6db74">&#34;stat /home/app/app_name/tmp/sidekiq.pid || exit 1&#34;</span>
-      <span style="color:#66d9ef">interval</span>: 30s
-      <span style="color:#66d9ef">timeout</span>: 40s
-      <span style="color:#66d9ef">retries</span>: <span style="color:#ae81ff">60</span>
+<span style="color:#f92672">services</span>:
+  <span style="color:#f92672">app</span>: <span style="color:#75715e">&amp;app_base</span>
+    <span style="color:#f92672">container_name</span>: <span style="color:#e6db74">&#39;app&#39;</span>
+    <span style="color:#f92672">env_file</span>:
+      - <span style="color:#ae81ff">docker.env</span>
+    <span style="color:#75715e">#镜像地址</span>
+    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">app.1.0.master</span>
+    <span style="color:#f92672">volumes</span>:
+      - <span style="color:#ae81ff">assets:/home/app/app/public</span>
+      - <span style="color:#ae81ff">/etc/localtime:/etc/localtime:ro</span>
+    <span style="color:#f92672">configs</span>:
+      - <span style="color:#f92672">source</span>: <span style="color:#ae81ff">database_conf</span>
+        <span style="color:#f92672">target</span>: <span style="color:#ae81ff">/home/app/app_name/config/database.yml</span>
+      - <span style="color:#f92672">source</span>: <span style="color:#ae81ff">mongoid_conf</span>
+        <span style="color:#f92672">target</span>: <span style="color:#ae81ff">/home/app/app_name/config/mongoid.yml</span>
+      - <span style="color:#f92672">source</span>: <span style="color:#ae81ff">puma_conf</span>
+        <span style="color:#f92672">target</span>: <span style="color:#ae81ff">/home/app/app_name/config/puma.rb</span>
+      - <span style="color:#f92672">source</span>: <span style="color:#ae81ff">secrets_conf</span>
+        <span style="color:#f92672">target</span>: <span style="color:#ae81ff">/home/app/app_name/config/secrets.yml</span>
+      - <span style="color:#f92672">source</span>: <span style="color:#ae81ff">sidekiq_conf</span>
+        <span style="color:#f92672">target</span>: <span style="color:#ae81ff">/home/app/app_name/config/sidekiq.yml</span>
+    <span style="color:#f92672">logging</span>:
+      <span style="color:#f92672">options</span>:
+        <span style="color:#f92672">max-size</span>: <span style="color:#e6db74">&#34;1g&#34;</span>
+        <span style="color:#f92672">max-file</span>: <span style="color:#e6db74">&#34;10&#34;</span>
+    <span style="color:#f92672">command</span>: <span style="color:#ae81ff">/home/app/app_name/bin/docker-start</span>
+    <span style="color:#75715e">#docker-swarm设置worker角色</span>
+    <span style="color:#f92672">deploy</span>:
+      <span style="color:#f92672">replicas</span>: <span style="color:#ae81ff">2</span>
+      <span style="color:#f92672">placement</span>:
+        <span style="color:#f92672">constraints</span>: [<span style="color:#ae81ff">node.role == worker]</span>
+    <span style="color:#f92672">ports</span>:
+      - <span style="color:#e6db74">&#34;7000:7000&#34;</span>
+    <span style="color:#75715e">#健康检查，用于服务器挂了之后自动重启</span>
+    <span style="color:#f92672">healthcheck</span>:
+      <span style="color:#f92672">test</span>: <span style="color:#e6db74">&#34;curl -fs localhost:7000 || exit 1&#34;</span>
+      <span style="color:#f92672">interval</span>: <span style="color:#ae81ff">30s</span>
+      <span style="color:#f92672">timeout</span>: <span style="color:#ae81ff">40s</span>
+      <span style="color:#f92672">retries</span>: <span style="color:#ae81ff">60</span>
+    <span style="color:#f92672">networks</span>:
+      - <span style="color:#ae81ff">overlay</span>
+      
+ <span style="color:#75715e">#sidekiq</span>
+  <span style="color:#f92672">worker</span>:
+    <span style="color:#f92672">&lt;&lt;</span>: <span style="color:#75715e">*app_base</span>
+    <span style="color:#f92672">container_name</span>: <span style="color:#e6db74">&#39;app_name_worker&#39;</span>
+    <span style="color:#f92672">deploy</span>:
+      <span style="color:#f92672">replicas</span>: <span style="color:#ae81ff">1</span>
+      <span style="color:#f92672">placement</span>:
+        <span style="color:#f92672">constraints</span>: [<span style="color:#ae81ff">node.role == manager]</span>
+    <span style="color:#f92672">ports</span>: []
+    <span style="color:#f92672">command</span>: <span style="color:#ae81ff">bundle exec sidekiq -C config/sidekiq.yml -L /home/app/app_name/log/sidekiq.log</span>
+    <span style="color:#f92672">healthcheck</span>:
+      <span style="color:#f92672">test</span>: <span style="color:#e6db74">&#34;stat /home/app/app_name/tmp/sidekiq.pid || exit 1&#34;</span>
+      <span style="color:#f92672">interval</span>: <span style="color:#ae81ff">30s</span>
+      <span style="color:#f92672">timeout</span>: <span style="color:#ae81ff">40s</span>
+      <span style="color:#f92672">retries</span>: <span style="color:#ae81ff">60</span>
 
-<span style="color:#66d9ef">configs</span>:
-  <span style="color:#66d9ef">database_conf</span>:
-    <span style="color:#66d9ef">external</span>: <span style="color:#66d9ef">true</span>
-  <span style="color:#66d9ef">mongoid_conf</span>:
-    <span style="color:#66d9ef">external</span>: <span style="color:#66d9ef">true</span>
-  <span style="color:#66d9ef">secrets_conf</span>:
-    <span style="color:#66d9ef">external</span>: <span style="color:#66d9ef">true</span>
-  <span style="color:#66d9ef">puma_conf</span>:
-    <span style="color:#66d9ef">external</span>: <span style="color:#66d9ef">true</span>
-  <span style="color:#66d9ef">sidekiq_conf</span>:
-    <span style="color:#66d9ef">external</span>: <span style="color:#66d9ef">true</span>
+<span style="color:#f92672">configs</span>:
+  <span style="color:#f92672">database_conf</span>:
+    <span style="color:#f92672">external</span>: <span style="color:#66d9ef">true</span>
+  <span style="color:#f92672">mongoid_conf</span>:
+    <span style="color:#f92672">external</span>: <span style="color:#66d9ef">true</span>
+  <span style="color:#f92672">secrets_conf</span>:
+    <span style="color:#f92672">external</span>: <span style="color:#66d9ef">true</span>
+  <span style="color:#f92672">puma_conf</span>:
+    <span style="color:#f92672">external</span>: <span style="color:#66d9ef">true</span>
+  <span style="color:#f92672">sidekiq_conf</span>:
+    <span style="color:#f92672">external</span>: <span style="color:#66d9ef">true</span>
 
-<span style="color:#66d9ef">networks</span>:
-  <span style="color:#66d9ef">overlay</span>:
+<span style="color:#f92672">networks</span>:
+  <span style="color:#f92672">overlay</span>:
 
-<span style="color:#66d9ef">volumes</span>:
-  <span style="color:#66d9ef">assets</span>:
+<span style="color:#f92672">volumes</span>:
+  <span style="color:#f92672">assets</span>:
 
 </code></pre></div><p>上面代码所用到的<code>bin/docker-start</code></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e">#!/usr/bin/env sh
@@ -403,7 +403,7 @@ bundle exec puma -C config/puma.rb
 
 
 
->
+
 <script defer src="/js/vendor_main.min.js"></script>
 
 

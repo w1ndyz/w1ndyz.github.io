@@ -5,13 +5,13 @@
     <description>Recent content on W1ndy&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 15 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 25 Dec 2020 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://w1ndyz.github.io/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Posts</title>
       <link>https://w1ndyz.github.io/post/</link>
-      <pubDate>Sat, 15 Aug 2020 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 25 Dec 2020 00:00:00 +0000</pubDate>
       
       <guid>https://w1ndyz.github.io/post/</guid>
       <description></description>
@@ -114,7 +114,10 @@
 &lt;/style&gt;
 &lt;div class=&#34;about-info&#34;&gt;
     &lt;div class=&#34;about-info-left&#34;&gt;
-        &lt;p&gt;Stay hungry stay foolish&lt;/p&gt;
+        &lt;p&gt;末流的头脑, 迷信运气&lt;/p&gt;
+        &lt;p&gt;三流的头脑，崇拜概率&lt;/p&gt;
+        &lt;p&gt;二流的头脑，信仰期望&lt;/p&gt;
+        &lt;p&gt;一流的头脑，奉行效用&lt;/p&gt;
         &lt;p&gt;Contact me:&lt;/p&gt;
         &lt;ul&gt;
 	&lt;li&gt;&lt;p&gt;&lt;span class=&#34;iconfont icon-mail&#34;&gt;&lt;/span&gt; Email: &lt;a href=&#34;mailto:w1ndyz0618@gmail.com&#34;
