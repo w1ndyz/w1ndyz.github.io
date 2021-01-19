@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>怎么做? on W1ndy&#39;s Blog</title>
+    <link>https://w1ndyz.github.io/categories/%E6%80%8E%E4%B9%88%E5%81%9A/</link>
+    <description>Recent content in 怎么做? on W1ndy&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 04 Aug 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://w1ndyz.github.io/categories/%E6%80%8E%E4%B9%88%E5%81%9A/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HTTP的演变及各版本区别</title>
+      <link>https://w1ndyz.github.io/post/http-version/</link>
+      <pubDate>Tue, 04 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://w1ndyz.github.io/post/http-version/</guid>
+      <description>HTTP的演变 HTTP(Hypertext transfer protocol)，即超文本传输协议，是由欧洲核子研究委员会CERN的英国工程师Tim Berners Lee发明的。最开始主要用于传递h</description>
+    </item>
+    
+    <item>
+      <title>一个HTTP请求的整个流程</title>
+      <link>https://w1ndyz.github.io/post/http-request/</link>
+      <pubDate>Fri, 31 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://w1ndyz.github.io/post/http-request/</guid>
+      <description>问题 当发出一个HTTP请求时，具体的请求过程是怎么样的呢？ 假如我们访问了https://www.google.com,它会经历什么样的历程呢</description>
+    </item>
+    
+    <item>
+      <title>如何处理秒杀</title>
+      <link>https://w1ndyz.github.io/post/miaosha/</link>
+      <pubDate>Wed, 01 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://w1ndyz.github.io/post/miaosha/</guid>
+      <description>一般说起秒杀，都会觉得是个比较麻烦，比较有技术含量。我们可以看看如何去处理好秒杀带来的问题。 秒杀会带来什么问题 假如像双十一那样，每个商品在某</description>
+    </item>
+    
+  </channel>
+</rss>

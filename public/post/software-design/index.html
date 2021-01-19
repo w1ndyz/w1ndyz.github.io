@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noodp"/>
+    <meta name="author" content="w1ndy">
+    <meta name="description" content="w1ndy的个人博客">
+    
+    
+    <link rel="prev" href="https://w1ndyz.github.io/post/tcp-why/" />
+    <link rel="next" href="https://w1ndyz.github.io/post/miaosha/" />
+    <link rel="canonical" href="https://w1ndyz.github.io/post/software-design/" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>
+        
+        
+            软件设计原则 | W1ndy&#39;s Blog
+        
+    </title>
+    <meta name="title" content="软件设计原则 | W1ndy&#39;s Blog">
+    
+<link rel="stylesheet" href="/css/main.min.css">
+
+
+    
+    
+ 
+
+<script type="application/ld+json">
+{
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/w1ndyz.github.io\/"
+    },
+    "articleSection" : "post",
+    "name" : "软件设计原则",
+    "headline" : "软件设计原则",
+    "description" : "SOLID KISS YAGNI",
+    "inLanguage" : "zh-cn",
+    "author" : "W1ndy",
+    "creator" : "W1ndy",
+    "publisher": "W1ndy",
+    "accountablePerson" : "W1ndy",
+    "copyrightHolder" : "W1ndy",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-06-25 00:00:00 \u002b0000 UTC",
+    "dateModified" : "2020-06-25 00:00:00 \u002b0000 UTC",
+    "url" : "https:\/\/w1ndyz.github.io\/post\/software-design\/",
+    "wordCount" : "1163",
+    "keywords" : [ "design", "W1ndy\u0027s Blog"]
+}
+</script>
+
+  </head>
+    <body class="">
+        <div class="wrapper">
+            <nav class="navbar">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+    <div class="container">
+        
+            <div class="navbar-header header-back2home-logo">
+                <span class="logo_mark" >>$</span>
+                <a href="https://w1ndyz.github.io/">
+                    <span class="logo_text" >cd /home/</span>
+                    <span class="logo_cursor" ></span>
+                </a>
+            </div>
+        
+        <div class="navbar-right">
+                
+                <span class="menu">
+                
+                <a class="menu-item" href="/post/" title="">Posts</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+                <a class="menu-item" href="/about/" title="W1ndy">W1ndy</a>
+                
+                <span class="divide"></span>
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a>
+                </span>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+     <div class="container">
+        <div class="navbar">
+            <div class="navbar-header header-logo">
+                    <a href="https://w1ndyz.github.io/">W1ndy&#39;s Blog</a>
+            </div>
+            <div class="navbar-right">
+                <div><a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a></div>
+                <div class="menu-toggle">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                <nav class="mb-md">
+                    
+                    
+                        <a class="menu-item" href="/post/" title="">
+                            <h3>Posts</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/categories/" title="">
+                            <h3>Categories</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/tags/" title="">
+                            <h3>Tags</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/about/" title="">
+                            <h3>About</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/about/" title="W1ndy">
+                            <h3>W1ndy</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                </nav>
+        </div>
+    </div>
+</nav>
+            <main class="main">
+                <div class="container">
+                    
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">软件设计原则</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="https://w1ndyz.github.io/" rel="author">W1ndy</a> with ♥
+                <span class="post-time">
+                on <time datetime=2020-06-25 itemprop="datePublished">June 25, 2020</time>
+                </span>
+                in
+                
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        
+                        
+                        
+                          <a href="https://w1ndyz.github.io/categories/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1/"> 软件设计, </a>
+                        
+                        
+                </span>
+                <span class="post-word-count">1163 words</span>
+        </div>
+    </header>
+
+    <div class="post-content">
+        
+
+        
+        
+
+        
+        
+        
+        
+        
+
+        
+        
+        
+
+        <p>今天看<code>golang-developer-road-map</code>，发现上面有涉及到软件的设计原则，于是就在网上搜索了一番，在这里整理一下。</p>
+<h1 id="目录">目录</h1>
+<ul>
+<li><a href="#chapter-1">SOLID原则</a>
+<ul>
+<li><a href="#chapter-11">职责单一原则</a></li>
+<li><a href="#chapter-12">开闭原则</a></li>
+<li><a href="#chapter-13">里氏代换原则</a></li>
+<li><a href="#chapter-14">接口隔离原则</a></li>
+<li><a href="#chapter-15">依赖倒置原则</a></li>
+</ul>
+</li>
+<li><a href="#chapter-2">YAGNI原则</a></li>
+<li><a href="#chapter-3">KISS原则</a></li>
+</ul>
+<h5 id="solid原则-a-idchapter-1a">SOLID原则 <a id="chapter-1"></a></h5>
+<blockquote>
+<p>SOLID原则又叫面向对象的S.O.L.I.D原则。</p>
+</blockquote>
+<h6 id="single-responsibility-principlesrp---职责单一原则-a-idchapter-11a">Single Responsibility Principle(SRP) - 职责单一原则 <a id="chapter-11"></a></h6>
+<p>其核心思想是: 一个类只做一件事，并把这件事做好，其只有一个引起它变化的原因。单一职责原则可以看成是低耦合、高内聚在面向对象原则上的引申。不要为一个模块设计过多的功能点，以保证实体只有一个引起它变化的原因。</p>
+<h6 id="openclosed-principleocp---开闭原则-a-idchapter-12a">Open/Closed Principle(OCP) - 开闭原则 <a id="chapter-12"></a></h6>
+<p>其核心思想是:模块是可以扩展的，而不可修改的。即对扩展是开放的，对修改是封闭的。对于面对对象来说，需要你依赖抽象，而不是实现。</p>
+<h6 id="liskov-subsititution-principlelsp---里氏代换原则-a-idchapter-13a">Liskov Subsititution Principle(LSP) - 里氏代换原则 <a id="chapter-13"></a></h6>
+<blockquote>
+<p>&ldquo;Subtypes must be substitutable for their base types&rdquo;</p>
+<p>​																			&ndash;软件工程大师Robert C. Martin</p>
+</blockquote>
+<p>子类应该可以替换任何基类能够出现的地方，并且替换后，代码仍能继续工作。另外，不应该在代码中出现if/else之类对子类类型进行判断的条件。里氏代换原则LSP是使代码符合开闭原则的一个重要保证。正式由于子类型的可替换性才使得父类型的模块在无需修改的情况下就可以扩展。LSP原则给了我们一个判断和设计类之间关系的基准:需不需要继承，以及怎么去设计继承的关系。</p>
+<h6 id="interface-segregation-principleisp---接口隔离原则-a-idchapter-14a">Interface Segregation Principle(ISP) - 接口隔离原则 <a id="chapter-14"></a></h6>
+<p>意思是把功能的实现写在接口中，而不是类中，使用多个专门的接口比使用单一的总接口要好。</p>
+<p>举个例子，我们对电脑有不同的使用方式，比如：写作，通讯，看电影，打游戏，上网，编程，计算，数据等，如果我们把这些功能都声明在电脑的抽类里面，那么，我们的上网本，PC机，服务器，笔记本的实现类都要实现所有的这些接口，这就显得太复杂了。所以，我们可以把其这些功能接口隔离开来，比如：工作学习接口，编程开发接口，上网娱乐接口，计算和数据服务接口，这样，我们的不同功能的电脑就可以有所选择地继承这些接口。</p>
+<p>按照功能隔离而不是按照对象隔离。</p>
+<h6 id="dependency-inversion-principledip---依赖倒置原则-a-idchapter-15a">Dependency Inversion Principle(DIP) - 依赖倒置原则 <a id="chapter-15"></a></h6>
+<p>高层模块不应该依赖低层模块的实现，而是应该依赖于高层的抽象。</p>
+<p>举个例子，墙面的开关不应该依赖于电灯的开关实现，而是应该依赖于一个抽象的开关的标准接口，这样，当我们扩展程序的时候，我们的开关同样可以控制其它不同的灯，甚至不同的电器。也就是说，电灯和其它电器继承并实现我们的标准开关接口，而我们的开关产商就可不需要关于其要控制什么样的设备，只需要关心那个标准的开关标准。这就是依赖倒置原则。</p>
+<h5 id="yagni-a-idchapter-2a">YAGNI <a id="chapter-2"></a></h5>
+<blockquote>
+<p>YAGNI(You Ain&rsquo;t Gonna Need It)。</p>
+</blockquote>
+<p>只考虑和设计必须的功能，避免过度设计。只实现目前需要的功能，如果以后需要更多的功能，到时候再添加。</p>
+<p>在设计系统的时候，往往会考虑很多扩展性的东西，想的太多往往使用大量的折中。不如只想目前需要的，有需要再添加。</p>
+<h5 id="kiss-a-idchapter-3a">KISS <a id="chapter-3"></a></h5>
+<blockquote>
+<p>KISS(Keep It Simple, Stupid)。</p>
+</blockquote>
+<p>让设计更简洁，简约有效率的设计理念。简单就是美。</p>
+
+    </div>
+
+    <div class="post-copyright">
+            
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>w1ndy </span>
+                </p>
+            
+
+            
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://w1ndyz.github.io/post/software-design/>https://w1ndyz.github.io/post/software-design/</span>
+            </p>
+            
+            
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s):
+            
+            <span class="tag"><a href="https://w1ndyz.github.io/tags/design/">
+                    #design</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> ·
+                <span><a href="https://w1ndyz.github.io/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://w1ndyz.github.io/post/tcp-why/" class="prev" rel="prev" title="为什么TCP3次握手4次挥手?"><i class="iconfont icon-left"></i>&nbsp;为什么TCP3次握手4次挥手?</a>
+        
+        
+        <a href="https://w1ndyz.github.io/post/miaosha/" class="next" rel="next" title="如何处理秒杀">如何处理秒杀&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+        
+            
+                <div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://cdn.bootcss.com/gitalk/1.5.2/gitalk.css">
+<script src="https://cdn.bootcss.com/gitalk/1.5.2/gitalk.min.js"></script>
+<script>
+    const gitalk = new Gitalk({
+
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: location.pathname, 
+        distractionFreeMode: false 
+    });
+    (function () {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('gitalk-container').innerHTML = 'Gitalk comments not available by default when the website is previewed locally.';
+            return;
+        }
+        gitalk.render('gitalk-container');
+    })();
+</script>
+
+            
+        
+    </div>
+</article>
+                </div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i>
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://w1ndyz.github.io/">w1ndy</a> | </span>
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/Mogeko/Mogege" target="_blank" rel="external nofollow">Mogege</a></span>
+    </div>
+</footer>
+
+
+
+
+
+
+<script defer src="/js/vendor_main.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script> pangu.spacingPage();</script>
+
+
+
+
+
+        </div>
+    </body>
+</html>
