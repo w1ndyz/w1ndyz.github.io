@@ -1,0 +1,155 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>W1ndy&#39;s Blog</title>
+    <link>https://w1ndyz.github.io/</link>
+    <description>Recent content on W1ndy&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 25 Dec 2020 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://w1ndyz.github.io/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Posts</title>
+      <link>https://w1ndyz.github.io/post/</link>
+      <pubDate>Fri, 25 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://w1ndyz.github.io/post/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>W1ndy</title>
+      <link>https://w1ndyz.github.io/about/</link>
+      <pubDate>Thu, 18 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://w1ndyz.github.io/about/</guid>
+      <description>&lt;style&gt;
+
+    @import url(&#39;https://fonts.googleapis.com/css?family=Katibeh&amp;display=swap&#39;);
+
+    .about-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .about-info-left li {
+        list-style-type: none;
+    }
+
+    .about-info-right {
+        margin: .5em 1.25em;
+    }
+
+    .about-info-right img {
+        width: 130px;
+    }
+
+    .about-info-right .left-ear,
+    .about-info-right .left-hand,
+    .about-info-right .right-ear,
+    .about-info-right .right-hand {
+        display: none;
+    }
+
+    @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+        .about-info {
+            flex-direction: column-reverse;
+            align-items: center;
+        }
+
+        .about-info-right {
+            margin: auto auto 2em;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .about-info-right img {
+            border-radius: 50%;
+            -webkit-border-radius: 50%;
+        }
+
+        .about-info-right .left-hand {
+            font-family: &#39;Katibeh&#39;;
+            display: inline;
+            font-size: 5em;
+            transform: translate(20px);
+            -moz-transform: translate(20px);
+            -webkit-transform: translate(20px);
+            -o-transform: translate(20px);
+        }
+
+        .about-info-right .right-hand {
+            font-family: &#39;Katibeh&#39;;
+            display: inline;
+            font-size: 5em;
+            transform: translate(-18px);
+            -moz-transform: translate(-18px);
+            -webkit-transform: translate(-18px);
+            -o-transform: translate(-18px);
+        }
+
+        .about-info-right .left-ear {
+            display: inline;
+            font-size: 1.2em;
+            align-self: flex-start;
+            transform: rotate(-40deg) translate(20px, 15px);
+            -moz-transform: rotate(-40deg) translate(20px, 15px);
+            -webkit-transform: rotate(-40deg) translate(20px, 15px);
+            -o-transform: rotate(-40deg) translate(20px, 15px);
+        }
+
+        .about-info-right .right-ear {
+            display: inline;
+            font-size: 1.2em;
+            align-self: flex-start;
+            transform: rotate(45deg) translate(-13px, 15px);
+            -moz-transform: rotate(45deg) translate(-13px, 15px);
+            -webkit-transform: rotate(45deg) translate(-13px, 15px);
+            -o-transform: rotate(45deg) translate(-13px, 15px);
+        }
+    }
+&lt;/style&gt;
+&lt;div class=&#34;about-info&#34;&gt;
+    &lt;div class=&#34;about-info-left&#34;&gt;
+        &lt;p&gt;末流的头脑, 迷信运气&lt;/p&gt;
+        &lt;p&gt;三流的头脑，崇拜概率&lt;/p&gt;
+        &lt;p&gt;二流的头脑，信仰期望&lt;/p&gt;
+        &lt;p&gt;一流的头脑，奉行效用&lt;/p&gt;
+        &lt;p&gt;Contact me:&lt;/p&gt;
+        &lt;ul&gt;
+	&lt;li&gt;&lt;p&gt;&lt;span class=&#34;iconfont icon-mail&#34;&gt;&lt;/span&gt; Email: &lt;a href=&#34;mailto:w1ndyz0618@gmail.com&#34;
+                    rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;w1ndyz0618@gmail.com&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;p&gt;&lt;span class=&#34;iconfont icon-github&#34;&gt;&lt;/span&gt; GitHub: &lt;a href=&#34;https://github.com/w1ndyz&#34;
+                        rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;W1ndy&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;p&gt;Book i&#39;ve read: &lt;a href=&#34;https://book.douban.com/people/121056416/&#34; target=&#34;_blank&#34; rel=&#34;nofollow noreferrer&#34;&gt;book.douban.com/people/121056416&lt;/a&gt;&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;about-info-right&#34;&gt;
+	    &lt;div class=&#34;left-hand&#34;&gt;&lt;span style=&#34;font-size: 0.5em&#34;&gt;&amp;ensp;&lt;/span&gt;٩&lt;/div&gt;
+        &lt;div class=&#34;left-ear&#34;&gt;▲&lt;/div&gt;
+        &lt;img alt=&#34;W1ndy&#34; src=&#34;https://raw.githubusercontent.com/w1ndyz/windy-img/master/img/WX20200613-020307%402x.png&#34;&gt;
+        &lt;div class=&#34;right-ear&#34;&gt;▲&lt;/div&gt;
+        &lt;div class=&#34;right-hand&#34;&gt;و&lt;span style=&#34;font-size: 0.5em&#34;&gt;✧&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;My Github chart:&lt;/p&gt;
+&lt;p&gt;
+  &lt;img src=&#34;https://ghchart.rshah.org/w1ndyz&#34; alt=&#34;w1ndyz&#39;s Github chart&#34; style=&#34;width: 100%;&#34;&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://w1ndyz.github.io/archives/</link>
+      <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://w1ndyz.github.io/archives/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

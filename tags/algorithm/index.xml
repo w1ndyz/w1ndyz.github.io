@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>algorithm on W1ndy&#39;s Blog</title>
+    <link>https://w1ndyz.github.io/tags/algorithm/</link>
+    <description>Recent content in algorithm on W1ndy&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 29 Jan 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://w1ndyz.github.io/tags/algorithm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>排序算法(二)</title>
+      <link>https://w1ndyz.github.io/post/sort2/</link>
+      <pubDate>Wed, 29 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://w1ndyz.github.io/post/sort2/</guid>
+      <description>时间复杂度为O(nlogn)的排序 排序(一)中讲了冒泡排序，插入排序，选择排序。其中插入排序比冒泡排序更常使用的原因是，插入排序只有1次赋值</description>
+    </item>
+    
+    <item>
+      <title>排序算法(一)</title>
+      <link>https://w1ndyz.github.io/post/sort1/</link>
+      <pubDate>Sun, 29 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://w1ndyz.github.io/post/sort1/</guid>
+      <description>排序算法的执行效率 对于排序算法执行效率的分析，我们一般会从这个几个方面衡量： 最好情况、最坏情况、平均情况时间复杂度 时间复杂度的系数、常数、低</description>
+    </item>
+    
+  </channel>
+</rss>

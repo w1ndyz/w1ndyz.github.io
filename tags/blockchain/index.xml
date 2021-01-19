@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>blockchain on W1ndy&#39;s Blog</title>
+    <link>https://w1ndyz.github.io/tags/blockchain/</link>
+    <description>Recent content in blockchain on W1ndy&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 25 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://w1ndyz.github.io/tags/blockchain/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>以太坊H2钱包的实现</title>
+      <link>https://w1ndyz.github.io/post/build-ethereum-wallet/</link>
+      <pubDate>Fri, 25 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://w1ndyz.github.io/post/build-ethereum-wallet/</guid>
+      <description>原理 私钥、公钥和地址的产生方法，这是区块链的相关知识 如何使用API进行远程调用等基础概念，这是传统IT行业相关知识 钱包设计相关的助记词(mn</description>
+    </item>
+    
+  </channel>
+</rss>

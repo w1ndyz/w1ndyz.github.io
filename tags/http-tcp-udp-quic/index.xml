@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>http tcp udp quic on W1ndy&#39;s Blog</title>
+    <link>https://w1ndyz.github.io/tags/http-tcp-udp-quic/</link>
+    <description>Recent content in http tcp udp quic on W1ndy&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 04 Aug 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://w1ndyz.github.io/tags/http-tcp-udp-quic/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HTTP的演变及各版本区别</title>
+      <link>https://w1ndyz.github.io/post/http-version/</link>
+      <pubDate>Tue, 04 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://w1ndyz.github.io/post/http-version/</guid>
+      <description>HTTP的演变 HTTP(Hypertext transfer protocol)，即超文本传输协议，是由欧洲核子研究委员会CERN的英国工程师Tim Berners Lee发明的。最开始主要用于传递h</description>
+    </item>
+    
+  </channel>
+</rss>
