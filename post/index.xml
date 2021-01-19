@@ -6,7 +6,16 @@
     <description>Recent content in Posts on W1ndy&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 25 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://w1ndyz.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 19 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://w1ndyz.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>《远见》</title>
+      <link>https://w1ndyz.github.io/post/yuanjian/</link>
+      <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://w1ndyz.github.io/post/yuanjian/</guid>
+      <description>3种职场燃料: 可迁移的技能 有意义的经验 持久的关系，即职业生态系统 燃料盘点清单 学位证书？语言，音乐？上司同事提及的优点？对情商的评价？是否帮助</description>
+    </item>
+    
     <item>
       <title>以太坊H2钱包的实现</title>
       <link>https://w1ndyz.github.io/post/build-ethereum-wallet/</link>
