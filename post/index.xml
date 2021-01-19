@@ -17,6 +17,15 @@
     </item>
     
     <item>
+      <title>Golang常见问题拾遗</title>
+      <link>https://w1ndyz.github.io/post/golang-concept/</link>
+      <pubDate>Tue, 20 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://w1ndyz.github.io/post/golang-concept/</guid>
+      <description>基础语法 =和：=的区别？ =是赋值 :=是声明变量并赋值 指针的作用? 指针类型用于传递地址，而不是传递值。因为golang的函数，所有的参数都是传</description>
+    </item>
+    
+    <item>
       <title>《增长黑客:如何低成本实现爆发式增长(二)》</title>
       <link>https://w1ndyz.github.io/post/growing-hack2/</link>
       <pubDate>Sat, 15 Aug 2020 00:00:00 +0000</pubDate>
