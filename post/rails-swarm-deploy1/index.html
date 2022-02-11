@@ -88,7 +88,7 @@
                 
                 <a class="menu-item" href="/tags/" title="">Tags</a>
                 
-                <a class="menu-item" href="/about/index.html" title="">About</a>
+                <a class="menu-item" href="/about/" title="">About</a>
                 
                 <a class="menu-item" href="/about/" title="W1ndy">W1ndy</a>
                 
@@ -134,7 +134,7 @@
                             <div class="menu-active"></div>
                         </a>
                     
-                        <a class="menu-item" href="/about/index.html" title="">
+                        <a class="menu-item" href="/about/" title="">
                             <h3>About</h3>
                             <div class="menu-active"></div>
                         </a>
@@ -197,7 +197,7 @@
 <p>在任何的push操作，GitLab都会寻找<code>.gitlab-ci.yml</code>文件，并对此次commit开始jobs，jobs的内容来源于<code>.gitlab-ci.yml</code>文件。</p>
 <p>一般情况下，运行一个pipline会经过三个阶段: <code>build</code>, <code>test</code>, <code>deploy</code>。这里我们介绍<code>prebuild</code>,<code>build</code>。这是基于rails的多阶段部署，详情可以查看<a href="https://ruby-china.org/topics/38766">Ruby China</a>的这一篇帖子。</p>
 <p>我们需要先熟悉gitlab-ci的语法，下面是一个示例:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#75715e"># runner的几个阶段</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#75715e"># runner的几个阶段</span>
 <span style="color:#f92672">stages</span>: 
   - <span style="color:#ae81ff">prebuild</span>
   - <span style="color:#ae81ff">build</span>

@@ -88,7 +88,7 @@
                 
                 <a class="menu-item" href="/tags/" title="">Tags</a>
                 
-                <a class="menu-item" href="/about/index.html" title="">About</a>
+                <a class="menu-item" href="/about/" title="">About</a>
                 
                 <a class="menu-item" href="/about/" title="W1ndy">W1ndy</a>
                 
@@ -134,7 +134,7 @@
                             <div class="menu-active"></div>
                         </a>
                     
-                        <a class="menu-item" href="/about/index.html" title="">
+                        <a class="menu-item" href="/about/" title="">
                             <h3>About</h3>
                             <div class="menu-active"></div>
                         </a>
@@ -193,7 +193,7 @@
         <h2 id="简介">简介</h2>
 <p>Proc, Lambda, block一直是Ruby元编程当中绕不过去的问题，它们经常出现，用法也是多种多样，今天就来了解一些它们之间的不同。</p>
 <p>我们用代码示例:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># Block Examples</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#75715e"># Block Examples</span>
 
 <span style="color:#f92672">[</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span><span style="color:#f92672">].</span>each { <span style="color:#f92672">|</span>x<span style="color:#f92672">|</span> puts x<span style="color:#f92672">*</span><span style="color:#ae81ff">2</span> }   <span style="color:#75715e"># block is in between the curly braces</span>
 
@@ -219,7 +219,7 @@ lam<span style="color:#f92672">.</span>call
 <ol>
 <li><code>Proc</code>是对象, 但是<code>Block</code>不是</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">p <span style="color:#f92672">=</span> <span style="color:#66d9ef">Proc</span><span style="color:#f92672">.</span>new { puts <span style="color:#e6db74">&#34;Hello World&#34;</span> }
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">p <span style="color:#f92672">=</span> <span style="color:#66d9ef">Proc</span><span style="color:#f92672">.</span>new { puts <span style="color:#e6db74">&#34;Hello World&#34;</span> }
 
 p<span style="color:#f92672">.</span>call  <span style="color:#75715e"># prints &#39;Hello World&#39;</span>
 p<span style="color:#f92672">.</span>class <span style="color:#75715e"># returns &#39;Proc&#39;</span>
@@ -232,7 +232,7 @@ a <span style="color:#f92672">=</span> { puts <span style="color:#e6db74">&#34;H
 </code></pre></div><ol start="2">
 <li>参数列表中最多只能有一个<code>Block</code>, 但是<code>Proc</code>可以有多个</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">multiple_procs</span>(proc1, proc2)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">multiple_procs</span>(proc1, proc2)
   proc1<span style="color:#f92672">.</span>call
   proc2<span style="color:#f92672">.</span>call
 <span style="color:#66d9ef">end</span>
@@ -243,25 +243,25 @@ b <span style="color:#f92672">=</span> <span style="color:#66d9ef">Proc</span><s
 multiple_procs(a,b)
 </code></pre></div><p>我们再来看一下<code>Proc</code>和<code>Lambda</code>的区别:</p>
 <p>在我们讨论这两个的区别之前，我们要知道一点，那就是它们都是<code>Proc</code>对象。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">proc <span style="color:#f92672">=</span> <span style="color:#66d9ef">Proc</span><span style="color:#f92672">.</span>new { puts <span style="color:#e6db74">&#34;Hello world&#34;</span> }
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">proc <span style="color:#f92672">=</span> <span style="color:#66d9ef">Proc</span><span style="color:#f92672">.</span>new { puts <span style="color:#e6db74">&#34;Hello world&#34;</span> }
 lam <span style="color:#f92672">=</span> lambda { puts <span style="color:#e6db74">&#34;Hello World&#34;</span> }
 
 proc<span style="color:#f92672">.</span>class <span style="color:#75715e"># returns &#39;Proc&#39;</span>
 lam<span style="color:#f92672">.</span>class  <span style="color:#75715e"># returns &#39;Proc&#39;</span>
 </code></pre></div><p>它们的不同之处在于返回(<code>return</code>)的地方不同，且<code>lambda</code>会严格检查传入的参数。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">lam <span style="color:#f92672">=</span> lambda { <span style="color:#f92672">|</span>x<span style="color:#f92672">|</span> puts x }    <span style="color:#75715e"># creates a lambda that takes 1 argument</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">lam <span style="color:#f92672">=</span> lambda { <span style="color:#f92672">|</span>x<span style="color:#f92672">|</span> puts x }    <span style="color:#75715e"># creates a lambda that takes 1 argument</span>
 lam<span style="color:#f92672">.</span>call(<span style="color:#ae81ff">2</span>)                    <span style="color:#75715e"># prints out 2</span>
 lam<span style="color:#f92672">.</span>call                       <span style="color:#75715e"># ArgumentError: wrong number of arguments (0 for 1)</span>
 lam<span style="color:#f92672">.</span>call(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>)                <span style="color:#75715e"># ArgumentError: wrong number of arguments (3 for 1)</span>
 
 lam <span style="color:#f92672">=</span> lambda{ <span style="color:#f92672">|</span>x,y,z<span style="color:#f92672">|</span> puts x,y,z }
 lam<span style="color:#f92672">.</span>call(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>)                <span style="color:#75715e"># returns nil</span>
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">proc <span style="color:#f92672">=</span> <span style="color:#66d9ef">Proc</span><span style="color:#f92672">.</span>new { <span style="color:#f92672">|</span>x<span style="color:#f92672">|</span> puts x } <span style="color:#75715e"># creates a proc that takes 1 argument</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">proc <span style="color:#f92672">=</span> <span style="color:#66d9ef">Proc</span><span style="color:#f92672">.</span>new { <span style="color:#f92672">|</span>x<span style="color:#f92672">|</span> puts x } <span style="color:#75715e"># creates a proc that takes 1 argument</span>
 proc<span style="color:#f92672">.</span>call(<span style="color:#ae81ff">2</span>)                   <span style="color:#75715e"># prints out 2</span>
 proc<span style="color:#f92672">.</span>call                      <span style="color:#75715e"># returns nil</span>
 proc<span style="color:#f92672">.</span>call(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>)               <span style="color:#75715e"># prints out 1 and forgets about the extra arguments</span>
 
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">lambda_test</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">lambda_test</span>
   lam <span style="color:#f92672">=</span> lambda { <span style="color:#66d9ef">return</span> }
   lam<span style="color:#f92672">.</span>call
   puts <span style="color:#e6db74">&#34;Hello world&#34;</span>
@@ -270,7 +270,7 @@ proc<span style="color:#f92672">.</span>call(<span style="color:#ae81ff">1</span
 lambda_test                 <span style="color:#75715e"># calling lambda_test prints &#39;Hello World&#39;</span>
 
 <span style="color:#75715e">#我们可以看见在lam.call之后，仍然运行了puts操作</span>
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">proc_test</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">proc_test</span>
   proc <span style="color:#f92672">=</span> <span style="color:#66d9ef">Proc</span><span style="color:#f92672">.</span>new { <span style="color:#66d9ef">return</span> }
   proc<span style="color:#f92672">.</span>call
   puts <span style="color:#e6db74">&#34;Hello world&#34;</span>

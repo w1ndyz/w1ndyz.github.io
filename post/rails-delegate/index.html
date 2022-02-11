@@ -88,7 +88,7 @@
                 
                 <a class="menu-item" href="/tags/" title="">Tags</a>
                 
-                <a class="menu-item" href="/about/index.html" title="">About</a>
+                <a class="menu-item" href="/about/" title="">About</a>
                 
                 <a class="menu-item" href="/about/" title="W1ndy">W1ndy</a>
                 
@@ -134,7 +134,7 @@
                             <div class="menu-active"></div>
                         </a>
                     
-                        <a class="menu-item" href="/about/index.html" title="">
+                        <a class="menu-item" href="/about/" title="">
                             <h3>About</h3>
                             <div class="menu-active"></div>
                         </a>
@@ -199,7 +199,7 @@
 <li>:allow_nil =&gt; 如果设置为true, 则阻止<code>NoMethodError</code>抛出异常</li>
 </ul>
 <h2 id="例子">例子</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Greeter</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">ActiveRecord</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Base</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Greeter</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">ActiveRecord</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Base</span>
   <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">hello</span>
     <span style="color:#e6db74">&#39;hello&#39;</span>
   <span style="color:#66d9ef">end</span>
@@ -217,14 +217,14 @@
 <span style="color:#66d9ef">Foo</span><span style="color:#f92672">.</span>new<span style="color:#f92672">.</span>hello   <span style="color:#75715e"># =&gt; &#34;hello&#34;</span>
 <span style="color:#66d9ef">Foo</span><span style="color:#f92672">.</span>new<span style="color:#f92672">.</span>goodbye <span style="color:#75715e"># =&gt; NoMethodError: undefined method `goodbye&#39; for #&lt;Foo:0x1af30c&gt;</span>
 </code></pre></div><h5 id="多个关联">多个关联</h5>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Foo</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">ActiveRecord</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Base</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Foo</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">ActiveRecord</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Base</span>
   belongs_to <span style="color:#e6db74">:greeter</span>
   delegate <span style="color:#e6db74">:hello</span>, <span style="color:#e6db74">:goodbye</span>, <span style="color:#e6db74">to</span>: <span style="color:#e6db74">:greeter</span>
 <span style="color:#66d9ef">end</span>
 
 <span style="color:#66d9ef">Foo</span><span style="color:#f92672">.</span>new<span style="color:#f92672">.</span>goodbye <span style="color:#75715e"># =&gt; &#34;goodbye&#34;</span>
 </code></pre></div><h5 id="方法可以委托给实例变量类变量或常量提供了他们作为一个symbols">方法可以委托给实例变量,类变量或常量提供了他们作为一个symbols:</h5>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Foo</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Foo</span>
   <span style="color:#66d9ef">CONSTANT_ARRAY</span> <span style="color:#f92672">=</span> <span style="color:#f92672">[</span><span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span><span style="color:#f92672">]</span>
   @@class_array  <span style="color:#f92672">=</span> <span style="color:#f92672">[</span><span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">7</span><span style="color:#f92672">]</span>
 
@@ -240,7 +240,7 @@
 <span style="color:#66d9ef">Foo</span><span style="color:#f92672">.</span>new<span style="color:#f92672">.</span>min <span style="color:#75715e"># =&gt; 4</span>
 <span style="color:#66d9ef">Foo</span><span style="color:#f92672">.</span>new<span style="color:#f92672">.</span>max <span style="color:#75715e"># =&gt; 11</span>
 </code></pre></div><h5 id="当然也可以delegate给自己的类方法-只需要使用class">当然也可以<code>delegate</code>给自己的类方法, 只需要使用<code>:class</code></h5>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Foo</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Foo</span>
   <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">self</span><span style="color:#f92672">.</span><span style="color:#a6e22e">hello</span>
     <span style="color:#e6db74">&#34;world&#34;</span>
   <span style="color:#66d9ef">end</span>
@@ -250,7 +250,7 @@
 
 <span style="color:#66d9ef">Foo</span><span style="color:#f92672">.</span>new<span style="color:#f92672">.</span>hello <span style="color:#75715e"># =&gt; &#34;world&#34;</span>
 </code></pre></div><h5 id="下面是使用prefix的例子">下面是使用<code>prefix</code>的例子</h5>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Invoice</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">Struct</span><span style="color:#f92672">.</span>new(<span style="color:#e6db74">:client</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Invoice</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">Struct</span><span style="color:#f92672">.</span>new(<span style="color:#e6db74">:client</span>)
   delegate <span style="color:#e6db74">:name</span>, <span style="color:#e6db74">:address</span>, <span style="color:#e6db74">to</span>: <span style="color:#e6db74">:client</span>, <span style="color:#e6db74">prefix</span>: <span style="color:#e6db74">:customer</span>
 <span style="color:#66d9ef">end</span>
 
@@ -258,14 +258,14 @@ invoice <span style="color:#f92672">=</span> <span style="color:#66d9ef">Invoice
 invoice<span style="color:#f92672">.</span>customer_name    <span style="color:#75715e"># =&gt; &#39;John Doe&#39;</span>
 invoice<span style="color:#f92672">.</span>customer_address <span style="color:#75715e"># =&gt; &#39;Vimmersvej 13&#39;</span>
 </code></pre></div><h5 id="如果你不希望返回-nomethoderror--你可以使用allow_nil-true">如果你不希望返回<code>NoMethodError</code>, 你可以使用<code>allow_nil: true</code></h5>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">User</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">ActiveRecord</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Base</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">User</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">ActiveRecord</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Base</span>
   has_one <span style="color:#e6db74">:profile</span>
   delegate <span style="color:#e6db74">:age</span>, <span style="color:#e6db74">to</span>: <span style="color:#e6db74">:profile</span>, <span style="color:#e6db74">allow_nil</span>: <span style="color:#66d9ef">true</span>
 <span style="color:#66d9ef">end</span>
 
 <span style="color:#66d9ef">User</span><span style="color:#f92672">.</span>new<span style="color:#f92672">.</span>age <span style="color:#75715e"># nil</span>
 </code></pre></div><p>注意: 如果对象不为空的话,<code>allow_nil: true</code>仍然会抛出<code>NoMethodError</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Foo</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Foo</span>
   <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">initialize</span>(bar)
     @bar <span style="color:#f92672">=</span> bar
   <span style="color:#66d9ef">end</span>

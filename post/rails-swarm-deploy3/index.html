@@ -88,7 +88,7 @@
                 
                 <a class="menu-item" href="/tags/" title="">Tags</a>
                 
-                <a class="menu-item" href="/about/index.html" title="">About</a>
+                <a class="menu-item" href="/about/" title="">About</a>
                 
                 <a class="menu-item" href="/about/" title="W1ndy">W1ndy</a>
                 
@@ -134,7 +134,7 @@
                             <div class="menu-active"></div>
                         </a>
                     
-                        <a class="menu-item" href="/about/index.html" title="">
+                        <a class="menu-item" href="/about/" title="">
                             <h3>About</h3>
                             <div class="menu-active"></div>
                         </a>
@@ -220,7 +220,7 @@
 <li>队列1台</li>
 </ul>
 <h5 id="上传docker-compose及配置文件至cron队列服务器将队列服务器作为swarm的manager节点">上传docker-compose及配置文件至cron队列服务器，将队列服务器作为swarm的manager节点。</h5>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 本地</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 本地</span>
 $ rsync app-docker.tar cron:/data/
 
 <span style="color:#75715e"># cron服务器</span>
@@ -265,17 +265,17 @@ s1fof4pev4rj8mzn0q8ymmqx4 *   quene               Ready               Active    
   schedule_job_enabled: true
 ​<span style="color:#e6db74">```</span>
 </code></pre></div><h5 id="创建docker-swarm监控">创建Docker Swarm监控</h5>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 启动docker监控portainer</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 启动docker监控portainer</span>
 $ docker stack deploy --compose-file<span style="color:#f92672">=</span>portainer-agent-stack.yml portainer
 </code></pre></div><p>其中<code>portainer-agent-stack.yml</code>的配置可以看<a href="https://portainer.readthedocs.io/en/latest/deployment.html">这里</a>。</p>
 <h5 id="接下来第一次部署登陆服务器拉取最新的镜像">接下来第一次部署，登陆服务器拉取最新的镜像</h5>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 登陆私有docker registry仓库</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 登陆私有docker registry仓库</span>
 $ docker login -u username -p pwd xxxxx.com:5000
 
 <span style="color:#75715e"># 拉取最新的镜像</span>
 $ docker pull xxxxx.com:5000/app:1.0.0.master
 </code></pre></div><h5 id="创建配置文件并进行部署">创建配置文件，并进行部署</h5>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 创建docker配置文件</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 创建docker配置文件</span>
 $ ./scripts/init_config
 
 <span style="color:#75715e"># 启动容器部署</span>
@@ -284,7 +284,7 @@ $ docker stack deploy --with-registry-auth -c docker-compose.yml app_name
 <span style="color:#75715e"># 查看容器运行状态</span>
 $ docker service ls
 </code></pre></div><p>其中<code>init_config</code>文件</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e">#!/bin/bash
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e">#!/bin/bash
 </span><span style="color:#75715e"></span>
 cd <span style="color:#e6db74">`</span>pwd<span style="color:#e6db74">`</span>/config
 conf_size<span style="color:#f92672">=</span><span style="color:#e6db74">`</span>docker config ls|grep database|wc -l<span style="color:#e6db74">`</span>
@@ -317,9 +317,9 @@ docker config create database_conf database.yml <span style="color:#ae81ff">\
 <p>当需要修改config配置的内容时，创建新配置（使用docker config create）然后更新服务以删除先前配置的config，并添加对新配置是一种常见模式。服务命令<code>--config-rm</code>和<code>--config-add</code>:</p>
 <p>比如我修改了secrets.yml，而现在在执行<code>docker config ls</code>时候已经存在secrets_conf</p>
 <p>这时候我执行下面命令，重新创建个新的配置，比如创建secrets_conf_1</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">docker config create secrets_conf_1 config/secrets.yml
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">docker config create secrets_conf_1 config/secrets.yml
 </code></pre></div><p>然后执行下面进行config更新</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">docker service update --config-rm database_log_conf --config-add src<span style="color:#f92672">=</span>database_log_conf_1,target<span style="color:#f92672">=</span>/home/app/app_name/config/database_log.yml app_name
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">docker service update --config-rm database_log_conf --config-add src<span style="color:#f92672">=</span>database_log_conf_1,target<span style="color:#f92672">=</span>/home/app/app_name/config/database_log.yml app_name
 </code></pre></div>
     </div>
 

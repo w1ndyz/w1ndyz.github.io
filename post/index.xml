@@ -6,14 +6,14 @@
     <description>Recent content in Posts on W1ndy&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 19 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://w1ndyz.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 11 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://w1ndyz.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>《远见》</title>
-      <link>https://w1ndyz.github.io/post/yuanjian/</link>
-      <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
+      <title>Go设计模式-单例</title>
+      <link>https://w1ndyz.github.io/post/go-singleton/</link>
+      <pubDate>Sat, 11 Dec 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://w1ndyz.github.io/post/yuanjian/</guid>
-      <description>3种职场燃料: 可迁移的技能 有意义的经验 持久的关系，即职业生态系统 燃料盘点清单 学位证书？语言，音乐？上司同事提及的优点？对情商的评价？是否帮助</description>
+      <guid>https://w1ndyz.github.io/post/go-singleton/</guid>
+      <description>最近打算集中一段时间复习一下设计模式，今天复习的第一个就是单例模式 当我们聊到单例模式的时候，我们可以知道它一般有两种实现方式，即懒汉模式和饿</description>
     </item>
     
     <item>
@@ -23,15 +23,6 @@
       
       <guid>https://w1ndyz.github.io/post/build-ethereum-wallet/</guid>
       <description>原理 私钥、公钥和地址的产生方法，这是区块链的相关知识 如何使用API进行远程调用等基础概念，这是传统IT行业相关知识 钱包设计相关的助记词(mn</description>
-    </item>
-    
-    <item>
-      <title>Golang常见问题拾遗</title>
-      <link>https://w1ndyz.github.io/post/golang-concept/</link>
-      <pubDate>Tue, 20 Oct 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://w1ndyz.github.io/post/golang-concept/</guid>
-      <description>基础语法 =和：=的区别？ =是赋值 :=是声明变量并赋值 指针的作用? 指针类型用于传递地址，而不是传递值。因为golang的函数，所有的参数都是传</description>
     </item>
     
     <item>

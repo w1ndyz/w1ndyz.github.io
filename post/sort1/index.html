@@ -88,7 +88,7 @@
                 
                 <a class="menu-item" href="/tags/" title="">Tags</a>
                 
-                <a class="menu-item" href="/about/index.html" title="">About</a>
+                <a class="menu-item" href="/about/" title="">About</a>
                 
                 <a class="menu-item" href="/about/" title="W1ndy">W1ndy</a>
                 
@@ -134,7 +134,7 @@
                             <div class="menu-active"></div>
                         </a>
                     
-                        <a class="menu-item" href="/about/index.html" title="">
+                        <a class="menu-item" href="/about/" title="">
                             <h3>About</h3>
                             <div class="menu-active"></div>
                         </a>
@@ -202,7 +202,7 @@
 <h3 id="排序算法的稳定性">排序算法的稳定性</h3>
 <p>比如我们有一组数据 2，9，3，4，8，3，按照大小排序之后就是 2，3，3，4，8，9。这组数据里有两个 3。经过某种排序算法排序之后，如果两个 3 的前后顺序没有改变，那我们就把这种排序算法叫作稳定的排序算法；如果前后顺序发生变化，那对应的排序算法就叫作不稳定的排序算法。</p>
 <h3 id="冒泡排序bubble-sort">冒泡排序(Bubble Sort)</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">BubbleSort</span>(<span style="color:#a6e22e">nums</span> []<span style="color:#66d9ef">int</span>) []<span style="color:#66d9ef">int</span> {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">BubbleSort</span>(<span style="color:#a6e22e">nums</span> []<span style="color:#66d9ef">int</span>) []<span style="color:#66d9ef">int</span> {
 	<span style="color:#a6e22e">size</span> <span style="color:#f92672">:=</span> len(<span style="color:#a6e22e">nums</span>)
 	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">size</span> <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span> {
 		<span style="color:#66d9ef">return</span> []<span style="color:#66d9ef">int</span>{}
@@ -230,10 +230,10 @@
 <p><img src="https://raw.githubusercontent.com/w1ndyz/windy-img/master/img/j7Fum8WXwPlQy3p.png" alt=""></p>
 <p>如果用概率论方法定量分析平均时间复杂度，涉及的数学推理和计算就会很复杂。我这里还有一种思路，通过“有序度”和“逆序度”这两个概念来进行分析。</p>
 <p>有序度是数组中具有有序关系的元素对的个数。有序元素对用数学表达式表示就是这样：</p>
-<pre><code>有序元素对：a[i] &lt;= a[j], 如果i &lt; j。
+<pre tabindex="0"><code>有序元素对：a[i] &lt;= a[j], 如果i &lt; j。
 </code></pre><p><img src="https://raw.githubusercontent.com/w1ndyz/windy-img/master/img/RzBm64WgHjMr5YL.png" alt=""></p>
 <p>同理，对于一个倒序排列的数组，比如 6，5，4，3，2，1，有序度是 0；对于一个完全有序的数组，比如 1，2，3，4，5，6，有序度就是 n*(n-1)/2，也就是 15。我们把这种完全有序的数组的有序度叫作满有序度。</p>
-<pre><code>逆序元素对：a[i] &gt; a[j], 如果i &lt; j。
+<pre tabindex="0"><code>逆序元素对：a[i] &gt; a[j], 如果i &lt; j。
 </code></pre><p>我们还可以得到一个公式：逆序度 = 满有序度 - 有序度。我们排序的过程就是一种增加有序度，减少逆序度的过程，最后达到满有序度，就说明排序完成了。</p>
 <p>我还是拿前面举的那个冒泡排序的例子来说明。要排序的数组的初始状态是 4，5，6，3，2，1 ，其中，有序元素对有 (4，5) (4，6)(5，6)，所以有序度是 3。n=6，所以排序完成之后终态的满有序度为 n*(n-1)/2=15。</p>
 <p><img src="https://raw.githubusercontent.com/w1ndyz/windy-img/master/img/yxd.png" alt=""></p>
@@ -243,7 +243,7 @@
 <h3 id="插入排序insertion-sort">插入排序(Insertion Sort)</h3>
 <p>首先，我们将数组中的数据分为两个区间，已排序区间和未排序区间。</p>
 <p>初始已排序区间只有一个元素，就是数组的第一个元素。插入算法的核心思想是取未排序区间中的元素，在已排序区间中找到合适的插入位置将其插入，并保证已排序区间数据一直有序。重复这个过程，直到未排序区间中元素为空，算法结束。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">InsertionSort</span>(<span style="color:#a6e22e">nums</span> []<span style="color:#66d9ef">int</span>) []<span style="color:#66d9ef">int</span> {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">InsertionSort</span>(<span style="color:#a6e22e">nums</span> []<span style="color:#66d9ef">int</span>) []<span style="color:#66d9ef">int</span> {
 	<span style="color:#a6e22e">n</span> <span style="color:#f92672">:=</span> len(<span style="color:#a6e22e">nums</span>)
 	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span> {
 		<span style="color:#66d9ef">return</span> []<span style="color:#66d9ef">int</span>{}
@@ -272,7 +272,7 @@
 <p>冒泡排序和插入排序的时间复杂度都是 O(n2)，都是原地排序算法。</p>
 <p>为什么插入排序要比冒泡排序更受欢迎呢？</p>
 <p>冒泡排序需要 3 个赋值操作，而插入排序只需要 1 个。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">冒泡排序中数据的交换操作</span>:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">冒泡排序中数据的交换操作</span>:
 <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">a</span>[<span style="color:#a6e22e">j</span>] &gt; <span style="color:#a6e22e">a</span>[<span style="color:#a6e22e">j</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] { 
   <span style="color:#75715e">// 交换 
 </span><span style="color:#75715e"></span>  <span style="color:#a6e22e">tmp</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">a</span>[<span style="color:#a6e22e">j</span>]

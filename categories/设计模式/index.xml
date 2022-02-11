@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>设计模式 on W1ndy&#39;s Blog</title>
+    <link>https://w1ndyz.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
+    <description>Recent content in 设计模式 on W1ndy&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 11 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://w1ndyz.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go设计模式-单例</title>
+      <link>https://w1ndyz.github.io/post/go-singleton/</link>
+      <pubDate>Sat, 11 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://w1ndyz.github.io/post/go-singleton/</guid>
+      <description>最近打算集中一段时间复习一下设计模式，今天复习的第一个就是单例模式 当我们聊到单例模式的时候，我们可以知道它一般有两种实现方式，即懒汉模式和饿</description>
+    </item>
+    
+  </channel>
+</rss>

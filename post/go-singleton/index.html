@@ -11,7 +11,7 @@
     
     <link rel="prev" href="https://w1ndyz.github.io/post/build-ethereum-wallet/" />
     
-    <link rel="canonical" href="https://w1ndyz.github.io/post/yuanjian/" />
+    <link rel="canonical" href="https://w1ndyz.github.io/post/go-singleton/" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -22,10 +22,10 @@
     <title>
         
         
-            《远见》 | W1ndy&#39;s Blog
+            Go设计模式-单例 | W1ndy&#39;s Blog
         
     </title>
-    <meta name="title" content="《远见》 | W1ndy&#39;s Blog">
+    <meta name="title" content="Go设计模式-单例 | W1ndy&#39;s Blog">
     
 <link rel="stylesheet" href="/css/main.min.css">
 
@@ -43,9 +43,9 @@
          "@id": "https:\/\/w1ndyz.github.io\/"
     },
     "articleSection" : "post",
-    "name" : "《远见》",
-    "headline" : "《远见》",
-    "description" : "费瑟斯通豪",
+    "name" : "Go设计模式-单例",
+    "headline" : "Go设计模式-单例",
+    "description" : "golang singleton 单例",
     "inLanguage" : "zh-cn",
     "author" : "W1ndy",
     "creator" : "W1ndy",
@@ -53,11 +53,11 @@
     "accountablePerson" : "W1ndy",
     "copyrightHolder" : "W1ndy",
     "copyrightYear" : "2021",
-    "datePublished": "2021-01-19 00:00:00 \u002b0000 UTC",
-    "dateModified" : "2021-01-19 00:00:00 \u002b0000 UTC",
-    "url" : "https:\/\/w1ndyz.github.io\/post\/yuanjian\/",
-    "wordCount" : "603",
-    "keywords" : [ "读书笔记", "W1ndy\u0027s Blog"]
+    "datePublished": "2021-12-11 00:00:00 \u002b0000 UTC",
+    "dateModified" : "2021-12-11 00:00:00 \u002b0000 UTC",
+    "url" : "https:\/\/w1ndyz.github.io\/post\/go-singleton\/",
+    "wordCount" : "491",
+    "keywords" : [ "design pattern", "W1ndy\u0027s Blog"]
 }
 </script>
 
@@ -88,7 +88,7 @@
                 
                 <a class="menu-item" href="/tags/" title="">Tags</a>
                 
-                <a class="menu-item" href="/about/index.html" title="">About</a>
+                <a class="menu-item" href="/about/" title="">About</a>
                 
                 <a class="menu-item" href="/about/" title="W1ndy">W1ndy</a>
                 
@@ -134,7 +134,7 @@
                             <div class="menu-active"></div>
                         </a>
                     
-                        <a class="menu-item" href="/about/index.html" title="">
+                        <a class="menu-item" href="/about/" title="">
                             <h3>About</h3>
                             <div class="menu-active"></div>
                         </a>
@@ -153,11 +153,11 @@
                     
 <article class="post-warp" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">《远见》</h1>
+        <h1 class="post-title" itemprop="name headline">Go设计模式-单例</h1>
         <div class="post-meta">
                 Written by <a itemprop="name" href="https://w1ndyz.github.io/" rel="author">W1ndy</a> with ♥
                 <span class="post-time">
-                on <time datetime=2021-01-19 itemprop="datePublished">January 19, 2021</time>
+                on <time datetime=2021-12-11 itemprop="datePublished">December 11, 2021</time>
                 </span>
                 in
                 
@@ -166,11 +166,11 @@
                         
                         
                         
-                          <a href="https://w1ndyz.github.io/categories/%E8%AF%BB%E4%B9%A6/"> 读书, </a>
+                          <a href="https://w1ndyz.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"> 设计模式, </a>
                         
                         
                 </span>
-                <span class="post-word-count">603 words</span>
+                <span class="post-word-count">491 words</span>
         </div>
     </header>
 
@@ -190,84 +190,76 @@
         
         
 
-        <h3 id="3种职场燃料">3种职场燃料:</h3>
-<ol>
-<li>可迁移的技能</li>
-<li>有意义的经验</li>
-<li>持久的关系，即职业生态系统</li>
-</ol>
-<h3 id="燃料盘点清单">燃料盘点清单</h3>
-<ol>
-<li>学位证书？语言，音乐？上司同事提及的优点？对情商的评价？是否帮助别人成长？</li>
-<li>个人旅行？国外工作经验？企业管理或创业经验？社区或志愿者活动？个人贡献过的大型活动、产品发布会和知名项目？公开的演讲？教学、咨询指导的经验？兴趣爱好、业余活动？其他生活中的经验和挑战？</li>
-<li>​在社交平台上有多少联系人？其他组织协会或行业协会？对你职业生涯带来重要影响的人？</li>
-</ol>
-<h4 id="真正人际关系的构建会首先尝试帮助别人">真正人际关系的构建会首先尝试帮助别人。</h4>
-<p>​	一旦找到了一名导师或支持者，首要任务就是欣赏他们，并与他们保持联系。</p>
-<h3 id="如何为接下来的一年设立目标">如何为接下来的一年设立目标</h3>
-<ol>
-<li>我是否在学习和成长？</li>
-<li>我是否正在对某些人、现在的公司，乃至整个社会拥有影响力？</li>
-<li>我体验到乐趣了吗？</li>
-<li>我是否得到了适当的奖励，并创造了经济价值？</li>
-</ol>
-<table>
-<thead>
-<tr>
-<th>目标领域</th>
-<th>权重</th>
-<th>自评分(满分10分)</th>
-<th>职业价值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>学习</td>
-<td>25%</td>
-<td>5</td>
-<td>125</td>
-</tr>
-<tr>
-<td>影响力</td>
-<td>25%</td>
-<td>3</td>
-<td>75</td>
-</tr>
-<tr>
-<td>乐趣</td>
-<td>25%</td>
-<td>5</td>
-<td>125</td>
-</tr>
-<tr>
-<td>奖励</td>
-<td>25%</td>
-<td>7</td>
-<td>175</td>
-</tr>
-</tbody>
-</table>
-<p>700分是健康的分数，低于500分需要严肃对待。根据权重的不同，自己打分。</p>
-<h3 id="职场燃料之持久的关系联系人专家团关键同事支持者">职场燃料之持久的关系：联系人，专家团，关键同事，支持者</h3>
-<blockquote>
-<p>《幸福有方法》大致描绘了12种“基于证据、得到科学研究支持的提高幸福感的策略”</p>
+        <p>最近打算集中一段时间复习一下设计模式，今天复习的第一个就是<code>单例模式</code></p>
+<p>当我们聊到<code>单例模式</code>的时候，我们可以知道它一般有两种实现方式，即<code>懒汉模式</code>和<code>饿汉模式</code>。</p>
+<h2 style="color: #23D18B"> 懒汉模式 </h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;sync&#34;</span>
+
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Singleton</span> <span style="color:#66d9ef">struct</span>{}
+
+<span style="color:#66d9ef">var</span> (
+	<span style="color:#a6e22e">singleton</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Singleton</span>
+  <span style="color:#a6e22e">once</span> = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">sync</span>.<span style="color:#a6e22e">Once</span>{}
+)
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">Get</span>() <span style="color:#f92672">*</span><span style="color:#a6e22e">Singleton</span> {
+  <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">singleton</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> {
+    <span style="color:#a6e22e">once</span>.<span style="color:#a6e22e">Do</span>(<span style="color:#66d9ef">func</span>(){
+      <span style="color:#a6e22e">singleton</span> = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">Singleton</span>{}
+    })
+  }
+  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">singleton</span>
+}
+
+</code></pre></div><h2 style="color: #23D18B"> 饿汉模式 </h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Singleton</span> <span style="color:#66d9ef">struct</span>{}
+
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">singleton</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Singleton</span>
+
+<span style="color:#66d9ef">func</span>	<span style="color:#a6e22e">init</span>() {
+  <span style="color:#a6e22e">singleton</span> = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">Singleton</span>
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">Get</span>() <span style="color:#f92672">*</span><span style="color:#a6e22e">Singleton</span> {
+  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">singleton</span>
+}
+</code></pre></div><p><code>饿汉模式</code>与<code>懒汉模式</code>的区别在于：</p>
 <ul>
-<li>表达感恩</li>
-<li>培养乐观心态</li>
-<li>避免思虑过度和社会攀比</li>
-<li>多行善事</li>
-<li>维护人际关系</li>
-<li>发展合作的策略</li>
-<li>学会原谅</li>
-<li>增加心流体验</li>
-<li>享受生活的乐趣</li>
-<li>努力实现目标</li>
-<li>信仰宗教，寻找精神寄托</li>
-<li>关注身体健康</li>
+<li><code>init</code>函数是在package首次被加载时执行，若<code>singleton</code>一直没有被使用，则浪费了内存，也延长了程序的加载时长</li>
+<li><code>sync.Once</code>是在使用时再执行，在并发的场景下也是线程安全的</li>
 </ul>
-</blockquote>
-<h3 id="后记">后记</h3>
-<p>人这一生的职场生涯是很长久的，不要在乎一时的得失，目光放长远一点，切记!</p>
+<p>顺带，我们来看一下<code>sync.Once</code>的底层实现:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">sync</span>
+
+<span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;sync/atomic&#34;</span>
+)
+
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Once</span> <span style="color:#66d9ef">struct</span> {
+  <span style="color:#a6e22e">done</span> <span style="color:#66d9ef">uint32</span>
+  <span style="color:#a6e22e">m</span> <span style="color:#a6e22e">Mutex</span>
+}
+
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">o</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Once</span>) <span style="color:#a6e22e">Do</span>(<span style="color:#a6e22e">f</span> <span style="color:#66d9ef">func</span>()) {
+  <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">atomic</span>.<span style="color:#a6e22e">LoadUint32</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">o</span>.<span style="color:#a6e22e">done</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+    <span style="color:#a6e22e">o</span>.<span style="color:#a6e22e">doSlow</span>(<span style="color:#a6e22e">f</span>)
+  }
+}
+
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">o</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Once</span>) <span style="color:#a6e22e">doSlow</span>(<span style="color:#a6e22e">f</span> <span style="color:#66d9ef">func</span>()) {
+  <span style="color:#a6e22e">o</span>.<span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">Lock</span>()
+  <span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">o</span>.<span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">Unlock</span>()
+  
+  <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">o</span>.<span style="color:#a6e22e">done</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+    <span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">atomic</span>.<span style="color:#a6e22e">StoreUint32</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">o</span>.<span style="color:#a6e22e">done</span>, <span style="color:#ae81ff">1</span>)
+    <span style="color:#a6e22e">f</span>()
+  }
+}
+</code></pre></div><p>在调用Do()的时候，加载是否被执行<code>done</code>，如果没有则调用doSlow(),在加锁后重新判断done的值是否有变化。那么为什么会判断两次呢？原因是:</p>
+<ol>
+<li>如果有多个<code>goroutine</code>调用这个代码，其中一个获取到了锁，另外的就不会去调用f()。但是f()是否执行完是位置的</li>
+<li>所以为了保证先执行f()，再设置标志位<code>done</code>，f()一定被执行，需要对<code>done</code>做原子操作</li>
+</ol>
 
     </div>
 
@@ -282,7 +274,7 @@
             
             <p class="copyright-item">
                     <span>Link:</span>
-                    <a href=https://w1ndyz.github.io/post/yuanjian/>https://w1ndyz.github.io/post/yuanjian/</span>
+                    <a href=https://w1ndyz.github.io/post/go-singleton/>https://w1ndyz.github.io/post/go-singleton/</span>
             </p>
             
             
@@ -298,8 +290,8 @@
             <section>
             <i class="iconfont icon-tag"></i>Tag(s):
             
-            <span class="tag"><a href="https://w1ndyz.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">
-                    #读书笔记</a></span>
+            <span class="tag"><a href="https://w1ndyz.github.io/tags/design-pattern/">
+                    #design pattern</a></span>
             
             </section>
         

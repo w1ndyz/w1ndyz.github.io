@@ -88,7 +88,7 @@
                 
                 <a class="menu-item" href="/tags/" title="">Tags</a>
                 
-                <a class="menu-item" href="/about/index.html" title="">About</a>
+                <a class="menu-item" href="/about/" title="">About</a>
                 
                 <a class="menu-item" href="/about/" title="W1ndy">W1ndy</a>
                 
@@ -134,7 +134,7 @@
                             <div class="menu-active"></div>
                         </a>
                     
-                        <a class="menu-item" href="/about/index.html" title="">
+                        <a class="menu-item" href="/about/" title="">
                             <h3>About</h3>
                             <div class="menu-active"></div>
                         </a>
@@ -207,7 +207,7 @@
 </ul>
 <p>Docker Compose 会运行目录下的<code>docker-compsoe.yml</code>配置文件组成一个工程，一个工程将包含多个服务，每个服务又定义了容器运行的镜像、参数、依赖，一个服务也可包含多个容器实例。</p>
 <p>下面将会举一个例子来看看，具体的compose文件如何配置:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---
 <span style="color:#75715e">#声明docker-compose的版本</span>
 <span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3.6&#34;</span>
 
@@ -288,7 +288,7 @@
   <span style="color:#f92672">assets</span>:
 
 </code></pre></div><p>上面代码所用到的<code>bin/docker-start</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e">#!/usr/bin/env sh
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e">#!/usr/bin/env sh
 </span><span style="color:#75715e"></span>bundle exec rails assets:precompile
 bundle exec rails db:migrate
 bundle exec puma -C config/puma.rb
