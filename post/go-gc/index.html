@@ -226,7 +226,7 @@ D(白色)
 <li>强三色不变性：黑色对象不会指向白色对象，只会指向灰色对象或黑色对象。</li>
 <li>弱三色不变性：黑色对象指向的白色对象必须包含一条灰色对象经由多个白色对象的可达路径。</li>
 </ol>
-<pre tabindex="0"><code># 强三色不变性
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"># 强三色不变性
 
 A(黑色) → B(灰色) → C(白色)
             ↓
@@ -240,28 +240,28 @@ A(黑色) → B(灰色) → C(白色)
   ↓         ↓
 D(白色) ← E(白色)
 
-</code></pre><h4 style="color: #23D18B"> 插入写屏障 </h4>
+</code></pre></div><h4 style="color: #23D18B"> 插入写屏障 </h4>
 <p>伪代码:</p>
-<pre tabindex="0"><code>writePointer(slot, ptr):
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">writePointer(slot, ptr):
   shade(ptr)
   *slot = ptr
-</code></pre><p>每当执行<code>*slot=ptr</code>时，都会先执行写屏障<code>shade(ptr)</code>。如果ptr是白色，则将改对象设置为灰色，其他情况不变。写屏障技术会将有存活可能的所有对象都标记为灰色，以满足强三色不变性。但这回有一点问题，如下:</p>
-<pre tabindex="0"><code>A(黑色) → B(灰色)
+</code></pre></div><p>每当执行<code>*slot=ptr</code>时，都会先执行写屏障<code>shade(ptr)</code>。如果ptr是白色，则将改对象设置为灰色，其他情况不变。写屏障技术会将有存活可能的所有对象都标记为灰色，以满足强三色不变性。但这回有一点问题，如下:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">A(黑色) → B(灰色)
             ↓
          C(白色)
 
 A(黑色)  B(灰色)
     ↓       ↓
     →   C(灰色)
-</code></pre><p>如上步骤可以看出，B并没有被回收。于是在Go<code>v1.8</code>的版本当中，引入了混合写屏障。</p>
+</code></pre></div><p>如上步骤可以看出，B并没有被回收。于是在Go<code>v1.8</code>的版本当中，引入了混合写屏障。</p>
 <h4 style="color: #23D18B"> 混合写屏障 </h4>
 <p>伪代码:</p>
-<pre tabindex="0"><code>writePointer(slot, ptr):
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">writePointer(slot, ptr):
   shade(ptr)
   if current stack is grey:
     shade(ptr)
   *slot = ptr
-</code></pre><p>混合写屏障会将被覆盖的对象标记为灰色，并在当前栈没有扫描时将新对象也标记为灰色。在垃圾收集标记的阶段，我们需要将创建的所有新对象都标记为黑色，防止新分配的栈内存和堆内存被错误的回收。</p>
+</code></pre></div><p>混合写屏障会将被覆盖的对象标记为灰色，并在当前栈没有扫描时将新对象也标记为灰色。在垃圾收集标记的阶段，我们需要将创建的所有新对象都标记为黑色，防止新分配的栈内存和堆内存被错误的回收。</p>
 <h3 style="color: #23D18B"> 完整的GC过程 </h3>
 <ol>
 <li>标记准备(Mark Setup, 需STW)， 打开写屏障。</li>
