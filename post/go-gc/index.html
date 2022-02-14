@@ -9,9 +9,9 @@
     <meta name="description" content="w1ndy的个人博客">
     
     
-    <link rel="prev" href="https://w1ndyz.github.io/post/build-ethereum-wallet/" />
-    <link rel="next" href="https://w1ndyz.github.io/post/go-gc/" />
-    <link rel="canonical" href="https://w1ndyz.github.io/post/go-singleton/" />
+    <link rel="prev" href="https://w1ndyz.github.io/post/go-singleton/" />
+    
+    <link rel="canonical" href="https://w1ndyz.github.io/post/go-gc/" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -22,10 +22,10 @@
     <title>
         
         
-            Go设计模式-单例 | W1ndy&#39;s Blog
+            Go的垃圾回收 | W1ndy&#39;s Blog
         
     </title>
-    <meta name="title" content="Go设计模式-单例 | W1ndy&#39;s Blog">
+    <meta name="title" content="Go的垃圾回收 | W1ndy&#39;s Blog">
     
 <link rel="stylesheet" href="/css/main.min.css">
 
@@ -43,21 +43,21 @@
          "@id": "https:\/\/w1ndyz.github.io\/"
     },
     "articleSection" : "post",
-    "name" : "Go设计模式-单例",
-    "headline" : "Go设计模式-单例",
-    "description" : "golang singleton 单例",
+    "name" : "Go的垃圾回收",
+    "headline" : "Go的垃圾回收",
+    "description" : "golang gc 垃圾回收",
     "inLanguage" : "zh-cn",
     "author" : "W1ndy",
     "creator" : "W1ndy",
     "publisher": "W1ndy",
     "accountablePerson" : "W1ndy",
     "copyrightHolder" : "W1ndy",
-    "copyrightYear" : "2021",
-    "datePublished": "2021-12-11 00:00:00 \u002b0000 UTC",
-    "dateModified" : "2021-12-11 00:00:00 \u002b0000 UTC",
-    "url" : "https:\/\/w1ndyz.github.io\/post\/go-singleton\/",
-    "wordCount" : "491",
-    "keywords" : [ "design pattern", "W1ndy\u0027s Blog"]
+    "copyrightYear" : "2022",
+    "datePublished": "2022-02-14 00:00:00 \u002b0000 UTC",
+    "dateModified" : "2022-02-14 00:00:00 \u002b0000 UTC",
+    "url" : "https:\/\/w1ndyz.github.io\/post\/go-gc\/",
+    "wordCount" : "1486",
+    "keywords" : [ "design", "W1ndy\u0027s Blog"]
 }
 </script>
 
@@ -153,11 +153,11 @@
                     
 <article class="post-warp" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">Go设计模式-单例</h1>
+        <h1 class="post-title" itemprop="name headline">Go的垃圾回收</h1>
         <div class="post-meta">
                 Written by <a itemprop="name" href="https://w1ndyz.github.io/" rel="author">W1ndy</a> with ♥
                 <span class="post-time">
-                on <time datetime=2021-12-11 itemprop="datePublished">December 11, 2021</time>
+                on <time datetime=2022-02-14 itemprop="datePublished">February 14, 2022</time>
                 </span>
                 in
                 
@@ -166,11 +166,11 @@
                         
                         
                         
-                          <a href="https://w1ndyz.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"> 设计模式, </a>
+                          <a href="https://w1ndyz.github.io/categories/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1/"> 软件设计, </a>
                         
                         
                 </span>
-                <span class="post-word-count">491 words</span>
+                <span class="post-word-count">1486 words</span>
         </div>
     </header>
 
@@ -190,75 +190,84 @@
         
         
 
-        <p>最近打算集中一段时间复习一下设计模式，今天复习的第一个就是<code>单例模式</code></p>
-<p>当我们聊到<code>单例模式</code>的时候，我们可以知道它一般有两种实现方式，即<code>懒汉模式</code>和<code>饿汉模式</code>。</p>
-<h2 style="color: #23D18B"> 懒汉模式 </h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;sync&#34;</span>
-
-<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Singleton</span> <span style="color:#66d9ef">struct</span>{}
-
-<span style="color:#66d9ef">var</span> (
-	<span style="color:#a6e22e">singleton</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Singleton</span>
-  <span style="color:#a6e22e">once</span> = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">sync</span>.<span style="color:#a6e22e">Once</span>{}
-)
-
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">Get</span>() <span style="color:#f92672">*</span><span style="color:#a6e22e">Singleton</span> {
-  <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">singleton</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> {
-    <span style="color:#a6e22e">once</span>.<span style="color:#a6e22e">Do</span>(<span style="color:#66d9ef">func</span>(){
-      <span style="color:#a6e22e">singleton</span> = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">Singleton</span>{}
-    })
-  }
-  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">singleton</span>
-}
-
-</code></pre></div><h2 style="color: #23D18B"> 饿汉模式 </h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Singleton</span> <span style="color:#66d9ef">struct</span>{}
-
-<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">singleton</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Singleton</span>
-
-<span style="color:#66d9ef">func</span>	<span style="color:#a6e22e">init</span>() {
-  <span style="color:#a6e22e">singleton</span> = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">Singleton</span>
-}
-
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">Get</span>() <span style="color:#f92672">*</span><span style="color:#a6e22e">Singleton</span> {
-  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">singleton</span>
-}
-</code></pre></div><p><code>饿汉模式</code>与<code>懒汉模式</code>的区别在于：</p>
+        <p>垃圾回收顾名思义，就是回收不再使用的对象和内存空间。大家也许常常听到一些和垃圾回收相关的名词，比方说STW(stop the world)。即垃圾收集器的暂停程序，用于暂停运行的程序，让垃圾回收器扫描不再使用的内存空间，当他结束后，应用程序才会继续运行。而说到最常见的垃圾回收算法，有标记清除(Mark&amp;Sweep)和引用计数(Reference&amp;Count)。在go中使用了标记清除的算法，并在此基础之上使用了三色标记法(白、灰、黑)和写屏障的技术。</p>
+<h3 style="color: #23D18B"> 标记清除 </h3>
+<p>从标记清楚的字面意思来看，垃圾回收分为两个阶段，即: <code>标记(Mark)</code>、<code>清除(Sweep)</code>。</p>
 <ul>
-<li><code>init</code>函数是在package首次被加载时执行，若<code>singleton</code>一直没有被使用，则浪费了内存，也延长了程序的加载时长</li>
-<li><code>sync.Once</code>是在使用时再执行，在并发的场景下也是线程安全的</li>
+<li>标记：从根对象开始出发查找并标记堆中所有存活的对象。</li>
+<li>清除：遍历堆中所有的对象，回收未被标记的垃圾对象，并将回收的内存放入空闲链表。</li>
 </ul>
-<p>顺带，我们来看一下<code>sync.Once</code>的底层实现:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">sync</span>
-
-<span style="color:#f92672">import</span> (
-	<span style="color:#e6db74">&#34;sync/atomic&#34;</span>
-)
-
-<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Once</span> <span style="color:#66d9ef">struct</span> {
-  <span style="color:#a6e22e">done</span> <span style="color:#66d9ef">uint32</span>
-  <span style="color:#a6e22e">m</span> <span style="color:#a6e22e">Mutex</span>
-}
-
-<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">o</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Once</span>) <span style="color:#a6e22e">Do</span>(<span style="color:#a6e22e">f</span> <span style="color:#66d9ef">func</span>()) {
-  <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">atomic</span>.<span style="color:#a6e22e">LoadUint32</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">o</span>.<span style="color:#a6e22e">done</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
-    <span style="color:#a6e22e">o</span>.<span style="color:#a6e22e">doSlow</span>(<span style="color:#a6e22e">f</span>)
-  }
-}
-
-<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">o</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Once</span>) <span style="color:#a6e22e">doSlow</span>(<span style="color:#a6e22e">f</span> <span style="color:#66d9ef">func</span>()) {
-  <span style="color:#a6e22e">o</span>.<span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">Lock</span>()
-  <span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">o</span>.<span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">Unlock</span>()
-  
-  <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">o</span>.<span style="color:#a6e22e">done</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
-    <span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">atomic</span>.<span style="color:#a6e22e">StoreUint32</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">o</span>.<span style="color:#a6e22e">done</span>, <span style="color:#ae81ff">1</span>)
-    <span style="color:#a6e22e">f</span>()
-  }
-}
-</code></pre></div><p>在调用Do()的时候，加载是否被执行<code>done</code>，如果没有则调用doSlow(),在加锁后重新判断done的值是否有变化。那么为什么会判断两次呢？原因是:</p>
+<p>而在我们使用标记清除算法的时候，往往需要STW，同步暂停程序的运行，标记阶段结束后，才会进入清除阶段，清除时会遍历堆中所有的对象。为了减少了STW的时间，于是golang采用了异步标记的模式，即三色标记法。</p>
+<h3 style="color: #23D18B"> 三色标记法 </h3>
+<p>三色标记法，将不同的对象分成了3个颜色：</p>
+<ul>
+<li>白色：潜在垃圾，可能会被回收。</li>
+<li>灰色：活跃对象，包括从根对象可达的对象以及不存在外部引用的对象。</li>
+<li>黑色：活跃对象。</li>
+</ul>
+<p>当垃圾收集器开始工作时，先将所有的对象标记为白色，这一步需要STW。然后将所有根对象标记为灰色，放入集合中。
+而三色标记法的步骤简单描述如下：</p>
 <ol>
-<li>如果有多个<code>goroutine</code>调用这个代码，其中一个获取到了锁，另外的就不会去调用f()。但是f()是否执行完是未知的</li>
-<li>所以为了保证先执行f()，再设置标志位<code>done</code>，f()一定被执行，需要对<code>done</code>做原子操作</li>
+<li>从灰色对象的集合中选择一个对象标记为黑色。</li>
+<li>将黑色对象所有可达的对象标记为灰色，保证该对象和被该对象引用的对象都不会被回收。</li>
+<li>重复上述两步，直到内存中没有灰色对象。</li>
+</ol>
+<p>在完成上述步骤之后，堆中就只有黑色的活跃对象和白色的潜在垃圾对象，白色对象用于垃圾收集器的回收。
+因为这个过程是异步的，所以在并发执行的过程当中一定会遇到对象指针发生改变的问题，即:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">A(黑色) → B(灰色) → C(白色)
+
+A(黑色) → B(灰色) → C(白色)
+  ↓
+D(白色)
+</code></pre></div><p>从上面可以看出，本来不应该回收的，却被回收了。为了避免这一点，go于是引入了屏障技术。</p>
+<h3 style="color: #23D18B"> 屏障技术 </h3>
+<p>内存屏障技术是一种指令，在用户程序读取、创建、更新对象的时候执行的一个指令，类似一个hook。为了保证并发或增量条件下标记算法的准确性，我们需要达成两种三色不变性:</p>
+<ol>
+<li>强三色不变性：黑色对象不会指向白色对象，只会指向灰色对象或黑色对象。</li>
+<li>弱三色不变性：黑色对象指向的白色对象必须包含一条灰色对象经由多个白色对象的可达路径。</li>
+</ol>
+<pre tabindex="0"><code># 强三色不变性
+
+A(黑色) → B(灰色) → C(白色)
+            ↓
+          D(白色)
+
+E(黑色) → F(黑色)          
+
+# 弱三色不变性
+
+A(黑色) → B(灰色) → C(白色)
+  ↓         ↓
+D(白色) ← E(白色)
+
+</code></pre><h4 style="color: #23D18B"> 插入写屏障 </h4>
+<p>伪代码:</p>
+<pre tabindex="0"><code>writePointer(slot, ptr):
+  shade(ptr)
+  *slot = ptr
+</code></pre><p>每当执行<code>*slot=ptr</code>时，都会先执行写屏障<code>shade(ptr)</code>。如果ptr是白色，则将改对象设置为灰色，其他情况不变。写屏障技术会将有存活可能的所有对象都标记为灰色，以满足强三色不变性。但这回有一点问题，如下:</p>
+<pre tabindex="0"><code>A(黑色) → B(灰色)
+            ↓
+         C(白色)
+
+A(黑色)  B(灰色)
+    ↓       ↓
+    →   C(灰色)
+</code></pre><p>如上步骤可以看出，B并没有被回收。于是在Go<code>v1.8</code>的版本当中，引入了混合写屏障。</p>
+<h4 style="color: #23D18B"> 混合写屏障 </h4>
+<p>伪代码:</p>
+<pre tabindex="0"><code>writePointer(slot, ptr):
+  shade(ptr)
+  if current stack is grey:
+    shade(ptr)
+  *slot = ptr
+</code></pre><p>混合写屏障会将被覆盖的对象标记为灰色，并在当前栈没有扫描时将新对象也标记为灰色。在垃圾收集标记的阶段，我们需要将创建的所有新对象都标记为黑色，防止新分配的栈内存和堆内存被错误的回收。</p>
+<h3 style="color: #23D18B"> 完整的GC过程 </h3>
+<ol>
+<li>标记准备(Mark Setup, 需STW)， 打开写屏障。</li>
+<li>使用三色标记法，并发去标记对象。Mark</li>
+<li>标记结束(Mark Terminate, 需STW)，关闭写屏障。</li>
+<li>清理(Sweeping, 并发)</li>
 </ol>
 
     </div>
@@ -274,7 +283,7 @@
             
             <p class="copyright-item">
                     <span>Link:</span>
-                    <a href=https://w1ndyz.github.io/post/go-singleton/>https://w1ndyz.github.io/post/go-singleton/</span>
+                    <a href=https://w1ndyz.github.io/post/go-gc/>https://w1ndyz.github.io/post/go-gc/</span>
             </p>
             
             
@@ -290,8 +299,8 @@
             <section>
             <i class="iconfont icon-tag"></i>Tag(s):
             
-            <span class="tag"><a href="https://w1ndyz.github.io/tags/design-pattern/">
-                    #design pattern</a></span>
+            <span class="tag"><a href="https://w1ndyz.github.io/tags/design/">
+                    #design</a></span>
             
             </section>
         
@@ -303,10 +312,8 @@
 
     <div class="post-nav">
         
-        <a href="https://w1ndyz.github.io/post/build-ethereum-wallet/" class="prev" rel="prev" title="以太坊H2钱包的实现"><i class="iconfont icon-left"></i>&nbsp;以太坊H2钱包的实现</a>
+        <a href="https://w1ndyz.github.io/post/go-singleton/" class="prev" rel="prev" title="Go设计模式-单例"><i class="iconfont icon-left"></i>&nbsp;Go设计模式-单例</a>
         
-        
-        <a href="https://w1ndyz.github.io/post/go-gc/" class="next" rel="next" title="Go的垃圾回收">Go的垃圾回收&nbsp;<i class="iconfont icon-right"></i></a>
         
     </div>
 
